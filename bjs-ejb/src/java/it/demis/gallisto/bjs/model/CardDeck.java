@@ -65,6 +65,8 @@ public class CardDeck {
       final PlayingCard card = this.availabCards.remove(0);
       this.removedCards.add(card);
       res = card;
+    } else {
+      // TODO new deck
     }
     return res;
   }

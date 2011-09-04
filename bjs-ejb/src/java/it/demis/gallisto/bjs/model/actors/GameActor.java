@@ -14,7 +14,6 @@ import java.util.logging.Logger;
 public abstract class GameActor {
 
   protected final Logger _log = Logger.getLogger(this.getClass().getName());
-  
   private GameStrategy strategy;
   private String name;
 
@@ -37,5 +36,9 @@ public abstract class GameActor {
 
   public void setStrategy(final GameStrategy _strategy) {
     this.strategy = _strategy;
+  }
+
+  public String toString() {
+    return "GameActor{" + "strategy=" + strategy + ", name=" + name + '}';
   }
 }

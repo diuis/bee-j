@@ -1,8 +1,11 @@
 package it.demis.gallisto.bjs.model.actors;
 
 import it.demis.gallisto.bjs.model.Hand;
+import it.demis.gallisto.bjs.model.cards.Facing;
+import it.demis.gallisto.bjs.model.cards.PlayingCard;
 import it.demis.gallisto.bjs.strategies.GameStrategy;
 import it.demis.gallisto.bjs.strategies.impl.PlayerQualifier;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
@@ -15,7 +18,7 @@ import javax.inject.Inject;
  */
 public class Player extends GameActor {
 
-  private List<Hand> hands;
+  private List<Hand> hands = new ArrayList<>();
 
   public Player() {
     this(null);
@@ -31,6 +34,20 @@ public class Player extends GameActor {
     this.setName(name);
   }
 
+  public void initHand(final PlayingCard[] _card) {
+    if (_card == null || _card.length != 2) {
+      throw new IllegalArgumentException("not valid parameter card: it's null or its size is != 2");
+    }
+    final Hand hand = new Hand();
+    for (final PlayingCard itm : _card) {
+      if (itm == null) {
+        throw new IllegalArgumentException("not valid parameter card array: one of its element is null");
+      }
+      hand.addCard(itm);
+    }
+    this.getHands().add(hand);
+  }
+
   @PostConstruct
   public void init() {
     _log.log(Level.INFO, "player created, his name is {0}", this.getName());
@@ -40,7 +57,7 @@ public class Player extends GameActor {
     return hands;
   }
 
-  public void setHands(final List<Hand> _hands) {
+  protected void setHands(final List<Hand> _hands) {
     this.hands = _hands;
   }
 

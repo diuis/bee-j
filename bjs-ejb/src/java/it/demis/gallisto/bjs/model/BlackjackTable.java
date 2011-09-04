@@ -6,8 +6,10 @@ package it.demis.gallisto.bjs.model;
 
 import it.demis.gallisto.bjs.model.actors.Dealer;
 import it.demis.gallisto.bjs.model.actors.Player;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,8 +47,8 @@ public class BlackjackTable implements GameTable {
   }
 
   @Override
-  public Set<Player> getGamePlayers() {
-    return Collections.unmodifiableSet(this.getPlayers());
+  public List<Player> getGamePlayers() {
+    return Collections.unmodifiableList(new ArrayList<>(this.getPlayers()));
   }
 
   protected Set<Player> getPlayers() {

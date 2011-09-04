@@ -61,6 +61,15 @@ public class Dealer extends GameActor {
     this.hand = _hand;
   }
 
+  public PlayingCard[] getCardsForPlayer() {
+    final PlayingCard[] res = new PlayingCard[2];
+    res[0] = this.getDeck().getCard();
+    res[0].setFacing(Facing.UP);
+    res[1] = this.getDeck().getCard();
+    res[1].setFacing(Facing.UP);
+    return res;
+  }
+
   @Inject
   public void setStrategy(@DealerQualifier final GameStrategy _strategy) {
     super.setStrategy(_strategy);

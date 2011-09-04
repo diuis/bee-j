@@ -6,6 +6,7 @@ package it.demis.gallisto.bjs.model;
 
 import it.demis.gallisto.bjs.model.actors.Dealer;
 import it.demis.gallisto.bjs.model.actors.Player;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -14,7 +15,7 @@ import java.util.Set;
  */
 public interface GameTable {
 
-  Set<Player> getGamePlayers();
+  List<Player> getGamePlayers();
 
   Dealer getDealer();
 
