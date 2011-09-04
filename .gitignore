@@ -1,0 +1,9 @@
+/bjs-ejb/build/
+/bjs-ejb/dist/
+/bjs-ejb/nbproject/private/
+/bjs-war/build/
+/bjs-war/dist/
+/bjs-war/nbproject/private/
+/build/
+/dist/
+/nbproject/private/

@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.prime.com.tr/ui">
+  <h:head>
+    <title>Blackjack Strategy</title>
+  </h:head>
+  <h:body>
+    <p:panel header="new Blackjack strategy game" footer="author: Demis Gallisto">
+      <h:form>
+        <h:outputText value="start a new game" />
+        <p:separator/>
+        <h:panelGrid columns="2">
+          <h:outputText value="total number of players " />
+          <p:inputText value="#{game.totalPlayers}" required="true" />
+        </h:panelGrid>
+        <p:commandButton value="start" actionListener="#{game.newGame}" update="msgs"/> 
+      </h:form>
+    </p:panel>
+    <p:panel id ="msgs">
+      <h:panelGrid columns="2" rendered="#{game.gameStarted}">
+        <h:outputText value="total players " />
+        <h:outputText value="#{game.totalPlayers}" />
+        <h:outputText value="dealer name " />
+        <h:outputText value="#{game.table.dealer.name}" />
+        <h:outputText value="dealer strategy " />
+        <h:outputText value="#{game.table.dealer.strategy.name}" />
+        <h:outputText value="dealer hand " />
+        <h:outputText value="#{game.table.dealer.hand}" />
+        <h:outputText value="dealer hand count " />
+        <h:outputText value="#{game.table.dealer.hand.count()}" />
+      </h:panelGrid>
+    </p:panel>
+  </h:body>
+</html>
+
