@@ -22,18 +22,24 @@ public abstract class AbstractCard implements PlayingCard {
   }
 
   public String getSuit() {
-    return this.suit;
+    String res = null;
+    if (this.getFacing().equals(Facing.DOWN)) {
+      res = "";
+    } else {
+      res = this.suit;
+    }
+    return res;
   }
 
   @Override
   public String getValue() {
-    String val = null;
+    String res = null;
     if (this.getFacing().equals(Facing.DOWN)) {
-      val = "";
+      res = "";
     } else {
-      val = this.value;
+      res = this.value;
     }
-    return val;
+    return res;
   }
 
   public void setFacing(final Facing _facing) {
