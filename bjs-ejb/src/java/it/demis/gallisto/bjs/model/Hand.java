@@ -31,10 +31,20 @@ public class Hand {
     this.getCards().add(_card);
   }
 
-  public int count() {
+  public int totalCards() {
     return this.getCards().size();
   }
 
+  public int getValue() {
+    int res = 0;
+    for (final PlayingCard card : this.getCards()) {
+      if (card != null) {
+        //res += card.getValue();
+      }
+    }
+    return res;
+  }
+  
   public String toString() {
     return "Hand{" + "cards=" + cards + '}';
   }

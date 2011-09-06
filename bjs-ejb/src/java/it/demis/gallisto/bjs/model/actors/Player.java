@@ -1,7 +1,6 @@
 package it.demis.gallisto.bjs.model.actors;
 
 import it.demis.gallisto.bjs.model.Hand;
-import it.demis.gallisto.bjs.model.cards.Facing;
 import it.demis.gallisto.bjs.model.cards.PlayingCard;
 import it.demis.gallisto.bjs.strategies.GameStrategy;
 import it.demis.gallisto.bjs.strategies.impl.PlayerQualifier;
@@ -9,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
+import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
@@ -16,6 +16,7 @@ import javax.inject.Inject;
  *
  * @author Demis Gallisto
  */
+@ManagedBean
 public class Player extends GameActor {
 
   private List<Hand> hands = new ArrayList<>();
@@ -59,6 +60,25 @@ public class Player extends GameActor {
 
   protected void setHands(final List<Hand> _hands) {
     this.hands = _hands;
+  }
+
+  public String getAdvice() {
+    String res = null;
+
+    return "ciao ";
+  }
+
+  public void play() {
+    for (final Hand h : this.getHands()) {
+      this.getStrategy().getAdvice(h, null, null);
+    }
+
+  }
+
+  public void stay() {
+  }
+
+  public void hit() {
   }
 
   @Inject

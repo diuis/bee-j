@@ -31,7 +31,7 @@ public abstract class GameActor {
   }
 
   public GameStrategy getStrategy() {
-    return strategy;
+    return this.strategy;
   }
 
   public void setStrategy(final GameStrategy _strategy) {

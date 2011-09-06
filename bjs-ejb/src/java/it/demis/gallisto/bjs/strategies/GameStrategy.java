@@ -4,11 +4,16 @@
  */
 package it.demis.gallisto.bjs.strategies;
 
+import it.demis.gallisto.bjs.model.Hand;
+import it.demis.gallisto.bjs.model.actors.Memory;
+
 /**
  *
  * @author Demis Gallisto
  */
 public interface GameStrategy {
   
-  Advice giveAdvice();
+  String getName();
+  
+  Advice getAdvice(Hand _playerHand, Hand _dealerHand, Memory _playerMemory);
 }

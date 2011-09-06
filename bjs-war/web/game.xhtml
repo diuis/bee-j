@@ -6,29 +6,75 @@
   </h:head>
   <h:body>
     <p:panel header="new Blackjack strategy game" footer="author: Demis Gallisto">
+
       <h:form>
         <h:outputText value="start a new game" />
         <p:separator/>
-        <h:panelGrid columns="2">
-          <h:outputText value="total number of players " />
-          <p:inputText value="#{game.totalPlayers}" required="true" />
+        <h:panelGrid columns="3">
+          <p:commandButton value="start" actionListener="#{game.newGame}" update="msgs"/> 
         </h:panelGrid>
-        <p:commandButton value="start" actionListener="#{game.newGame}" update="msgs"/> 
       </h:form>
-    </p:panel>
-    <p:panel id ="msgs">
-      <h:panelGrid columns="2" rendered="#{game.gameStarted}">
-        <h:outputText value="total players " />
-        <h:outputText value="#{game.totalPlayers}" />
-        <h:outputText value="dealer name " />
-        <h:outputText value="#{game.table.dealer.name}" />
-        <h:outputText value="dealer strategy " />
-        <h:outputText value="#{game.table.dealer.strategy.name}" />
-        <h:outputText value="dealer hand " />
-        <h:outputText value="#{game.table.dealer.hand}" />
-        <h:outputText value="dealer hand count " />
-        <h:outputText value="#{game.table.dealer.hand.count()}" />
-      </h:panelGrid>
+
+      <p:panel id="msgs" header="Table game">
+        <h:form>
+
+          <p:panel header="table info">
+            <h:outputText value="total cards " />
+            <h:outputText value="" />
+          </p:panel>
+
+          <p:panel header="dealer: #{game.table.dealer.name}">
+            <h:panelGrid columns="2" rendered="#{game.gameStarted}">
+              <h:outputText value="name " />
+              <h:outputText value="#{game.table.dealer.name}" />
+              <h:outputText value="strategy " />
+              <h:outputText value="#{game.table.dealer.strategy.name}" />
+              <h:outputText value="hand " />
+              <p:dataGrid var="card" value="#{game.table.dealer.hand.cards}" columns="2" rows ="1">
+                <p:column>
+                  <h:outputText value="[" />
+                  <h:outputText value="#{card.value}" />
+                  <h:outputText value=" " />
+                  <h:outputText value="#{card.suit}" />
+                  <h:outputText value="]" />
+                </p:column>
+              </p:dataGrid>
+              <h:outputText value="dealer hand total cards " />
+              <h:outputText value="#{game.table.dealer.hand.totalCards()}" />
+            </h:panelGrid>
+          </p:panel>
+
+          <p:panel header="player: #{game.table.player.name}">  
+            <h:panelGrid columns="2" >  
+              <h:outputText value="name " /> 
+              <h:outputText value="#{game.table.player.name}" />
+              <h:outputText value="strategy " /> 
+              <h:outputText value="#{game.table.player.strategy.name}" />
+              <h:outputText value="hands " /> 
+              <p:dataGrid var="hand" value="#{game.table.player.hands}" columns="1" rows="2" effect="true">
+                <p:column>
+                  <p:dataGrid var="card" value="#{hand.cards}" columns="2" rows ="1">
+                    <p:column>
+                      <h:outputText value="[" />
+                      <h:outputText value="#{card.value}" />
+                      <h:outputText value=" " />
+                      <h:outputText value="#{card.suit}" />
+                      <h:outputText value="]" />
+                    </p:column>
+                  </p:dataGrid>
+                  <p:commandButton value="stay" actionListener="#{game.table.player.stay}" update="msgs"/>
+                  <p:commandButton value="hit" actionListener="#{game.table.player.hit}" update="msgs"/> 
+                  <p:commandButton value="Advice" onclick="adviceDialog.show();" type="button"/>  
+                  <p:dialog header="Player advice" widgetVar="adviceDialog" modal="true" height="200">  
+                    <h:outputText value="#{game.table.player.advice}" />  
+                  </p:dialog>
+                </p:column>
+              </p:dataGrid>
+            </h:panelGrid>
+          </p:panel>
+          
+        </h:form>
+      </p:panel>
     </p:panel>
   </h:body>
 </html>
