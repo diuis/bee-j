@@ -2,45 +2,35 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package it.demis.gallisto.bjs.strategies.load;
+package it.demis.gallisto.bjs.strategies.io;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-import javax.xml.bind.PropertyException;
 
 /**
  *
  * @author Demis Gallisto
  */
-public class DataStrategyLoader {
+public class DataStrategySave {
 
-  private volatile static DataStrategyLoader singleton;
+  private volatile static DataStrategySave singleton;
+  private String fileName = "/opt/develop/data_bj_basicstrategy.xml";
 
-  public static DataStrategyLoader getInstance() {
-    if (DataStrategyLoader.singleton == null) {
-      synchronized (DataStrategyLoader.class) {
-        if (DataStrategyLoader.singleton == null) {
-          DataStrategyLoader.singleton = new DataStrategyLoader();
+  public static DataStrategySave getInstance() {
+    if (DataStrategySave.singleton == null) {
+      synchronized (DataStrategySave.class) {
+        if (DataStrategySave.singleton == null) {
+          DataStrategySave.singleton = new DataStrategySave();
         }
       }
     }
-    return DataStrategyLoader.singleton;
+    return DataStrategySave.singleton;
   }
 
-  public DataStrategyLoader() {
-    super();
-  }
-
-  public DataStrategy load() {
-    DataStrategy res = null;
-
-    return res;
-  }
-
-  public void save() throws PropertyException, JAXBException {
+  public void save() throws DataStrategyIOException {
     try {
       DataStrategy ds = new DataStrategy();
 
@@ -80,7 +70,7 @@ public class DataStrategyLoader {
       ds.setHard(hard);
       ds.setSoft(soft);
       ds.setPair(pair);
-      
+
       ds.getDealerMapping().put(2, 0);
       ds.getDealerMapping().put(3, 1);
       ds.getDealerMapping().put(4, 2);
@@ -91,7 +81,7 @@ public class DataStrategyLoader {
       ds.getDealerMapping().put(9, 7);
       ds.getDealerMapping().put(10, 8);
       ds.getDealerMapping().put(1, 9);
-      
+
       ds.getPlHardMapping().put(5, 0);
       ds.getPlHardMapping().put(6, 0);
       ds.getPlHardMapping().put(7, 0);
@@ -129,23 +119,17 @@ public class DataStrategyLoader {
       ds.getPlPairMapping().put(10, 7);
       ds.getPlPairMapping().put(1, 8);
 
-      JAXBContext jc = JAXBContext.newInstance(DataStrategy.class);
-      Marshaller m = jc.createMarshaller();
+      final Marshaller m = JAXBContext.newInstance(DataStrategy.class).createMarshaller();
       m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-      m.marshal(ds, new FileOutputStream("/opt/develop/data_bj_basicstrategy.xml"));
-    } catch (FileNotFoundException ex) {
-      ex.printStackTrace();
+      m.marshal(ds, new FileOutputStream(this.fileName));
+
+    } catch (final FileNotFoundException | JAXBException _e) {
+      throw new DataStrategyIOException(_e);
     }
 
   }
 
-  public static void main(String[] args) {
-    try {
-      DataStrategyLoader.getInstance().save();
-    } catch (PropertyException ex) {
-      ex.printStackTrace();
-    } catch (JAXBException ex) {
-      ex.printStackTrace();
-    }
+  public static void main(String[] args) throws DataStrategyIOException {
+    DataStrategySave.getInstance().save();
   }
 }

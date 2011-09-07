@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:dataStrategy xmlns:ns2="http://demis.gallisto.it/bjs">
+    <dealerMapping>
+        <entry key="1">9</entry>
+        <entry key="2">0</entry>
+        <entry key="3">1</entry>
+        <entry key="4">2</entry>
+        <entry key="5">3</entry>
+        <entry key="6">4</entry>
+        <entry key="7">5</entry>
+        <entry key="8">6</entry>
+        <entry key="9">7</entry>
+        <entry key="10">8</entry>
+    </dealerMapping>
+    <hard>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+    </hard>
+    <hard>
+        <item>hi</item>
+        <item>dh</item>
+        <item>dh</item>
+        <item>dh</item>
+        <item>dh</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+    </hard>
+    <hard>
+        <item>dh</item>
+        <item>dh</item>
+        <item>dh</item>
+        <item>dh</item>
+        <item>dh</item>
+        <item>dh</item>
+        <item>dh</item>
+        <item>dh</item>
+        <item>hi</item>
+        <item>hi</item>
+    </hard>
+    <hard>
+        <item>dh</item>
+        <item>dh</item>
+        <item>dh</item>
+        <item>dh</item>
+        <item>dh</item>
+        <item>dh</item>
+        <item>dh</item>
+        <item>dh</item>
+        <item>dh</item>
+        <item>hi</item>
+    </hard>
+    <hard>
+        <item>hi</item>
+        <item>hi</item>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+    </hard>
+    <hard>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+    </hard>
+    <hard>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>su</item>
+        <item>hi</item>
+    </hard>
+    <hard>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>su</item>
+        <item>su</item>
+        <item>su</item>
+    </hard>
+    <hard>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+    </hard>
+    <pair>
+        <item>sp</item>
+        <item>sp</item>
+        <item>sp</item>
+        <item>sp</item>
+        <item>sp</item>
+        <item>sp</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+    </pair>
+    <pair>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>sp</item>
+        <item>sp</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+    </pair>
+    <pair>
+        <item>dh</item>
+        <item>dh</item>
+        <item>dh</item>
+        <item>dh</item>
+        <item>dh</item>
+        <item>dh</item>
+        <item>dh</item>
+        <item>dh</item>
+        <item>hi</item>
+        <item>hi</item>
+    </pair>
+    <pair>
+        <item>sp</item>
+        <item>sp</item>
+        <item>sp</item>
+        <item>sp</item>
+        <item>sp</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+    </pair>
+    <pair>
+        <item>sp</item>
+        <item>sp</item>
+        <item>sp</item>
+        <item>sp</item>
+        <item>sp</item>
+        <item>sp</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+    </pair>
+    <pair>
+        <item>sp</item>
+        <item>sp</item>
+        <item>sp</item>
+        <item>sp</item>
+        <item>sp</item>
+        <item>sp</item>
+        <item>sp</item>
+        <item>sp</item>
+        <item>sp</item>
+        <item>sp</item>
+    </pair>
+    <pair>
+        <item>sp</item>
+        <item>sp</item>
+        <item>sp</item>
+        <item>sp</item>
+        <item>sp</item>
+        <item>st</item>
+        <item>sp</item>
+        <item>sp</item>
+        <item>st</item>
+        <item>st</item>
+    </pair>
+    <pair>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+    </pair>
+    <pair>
+        <item>sp</item>
+        <item>sp</item>
+        <item>sp</item>
+        <item>sp</item>
+        <item>sp</item>
+        <item>sp</item>
+        <item>sp</item>
+        <item>sp</item>
+        <item>sp</item>
+        <item>sp</item>
+    </pair>
+    <plHardMapping>
+        <entry key="5">0</entry>
+        <entry key="6">0</entry>
+        <entry key="7">0</entry>
+        <entry key="8">0</entry>
+        <entry key="9">1</entry>
+        <entry key="10">2</entry>
+        <entry key="11">3</entry>
+        <entry key="12">4</entry>
+        <entry key="13">5</entry>
+        <entry key="14">5</entry>
+        <entry key="15">6</entry>
+        <entry key="17">8</entry>
+        <entry key="16">7</entry>
+        <entry key="19">8</entry>
+        <entry key="18">8</entry>
+        <entry key="20">8</entry>
+    </plHardMapping>
+    <plPairMapping>
+        <entry key="1">8</entry>
+        <entry key="2">0</entry>
+        <entry key="3">0</entry>
+        <entry key="4">1</entry>
+        <entry key="5">2</entry>
+        <entry key="6">3</entry>
+        <entry key="7">4</entry>
+        <entry key="8">5</entry>
+        <entry key="9">6</entry>
+        <entry key="10">7</entry>
+    </plPairMapping>
+    <plSoftMapping>
+        <entry key="2">0</entry>
+        <entry key="3">1</entry>
+        <entry key="5">1</entry>
+        <entry key="6">2</entry>
+        <entry key="7">4</entry>
+        <entry key="8">5</entry>
+        <entry key="9">5</entry>
+    </plSoftMapping>
+    <soft>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>dh</item>
+        <item>dh</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+    </soft>
+    <soft>
+        <item>hi</item>
+        <item>hi</item>
+        <item>dh</item>
+        <item>dh</item>
+        <item>dh</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+    </soft>
+    <soft>
+        <item>hi</item>
+        <item>dh</item>
+        <item>dh</item>
+        <item>dh</item>
+        <item>dh</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+    </soft>
+    <soft>
+        <item>st</item>
+        <item>ds</item>
+        <item>ds</item>
+        <item>ds</item>
+        <item>ds</item>
+        <item>st</item>
+        <item>st</item>
+        <item>hi</item>
+        <item>hi</item>
+        <item>hi</item>
+    </soft>
+    <soft>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+        <item>st</item>
+    </soft>
+</ns2:dataStrategy>

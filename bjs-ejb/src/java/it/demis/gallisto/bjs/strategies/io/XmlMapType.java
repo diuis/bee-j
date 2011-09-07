@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package it.demis.gallisto.bjs.strategies.load;
+package it.demis.gallisto.bjs.strategies.io;
 
 import java.util.List;
 
