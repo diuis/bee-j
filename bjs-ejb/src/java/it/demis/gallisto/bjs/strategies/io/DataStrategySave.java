@@ -6,6 +6,8 @@ package it.demis.gallisto.bjs.strategies.io;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -14,10 +16,22 @@ import javax.xml.bind.Marshaller;
  *
  * @author Demis Gallisto
  */
-public class DataStrategySave {
+public class DataStrategySave extends DataStrategyIO {
 
   private volatile static DataStrategySave singleton;
-  private String fileName = "/opt/develop/data_bj_basicstrategy.xml";
+
+  private Marshaller marshaller;
+
+  private DataStrategySave() {
+    super();
+    try {
+      this.setFileName(System.getProperty("bjs.datastrategy.save.filename", "/opt/develop/data_bj_basicstrategy.xml"));
+      this.marshaller = JAXBContext.newInstance(DataStrategy.class).createMarshaller();
+      this.marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+    } catch (final JAXBException _e) {
+      throw new IllegalStateException("problems on creation a new instance of DataStrategySave", _e);
+    }
+  }
 
   public static DataStrategySave getInstance() {
     if (DataStrategySave.singleton == null) {
@@ -119,9 +133,12 @@ public class DataStrategySave {
       ds.getPlPairMapping().put(10, 7);
       ds.getPlPairMapping().put(1, 8);
 
-      final Marshaller m = JAXBContext.newInstance(DataStrategy.class).createMarshaller();
-      m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-      m.marshal(ds, new FileOutputStream(this.fileName));
+      synchronized (this.marshaller) {
+        this.marshaller.marshal(ds, new FileOutputStream(this.getFileName()));
+      }
+      if (_log.isLoggable(Level.INFO)) {
+        this._log.log(Level.INFO, "configuration file saved: {0}", this.getFileName());
+      }
 
     } catch (final FileNotFoundException | JAXBException _e) {
       throw new DataStrategyIOException(_e);
@@ -129,7 +146,4 @@ public class DataStrategySave {
 
   }
 
-  public static void main(String[] args) throws DataStrategyIOException {
-    DataStrategySave.getInstance().save();
-  }
 }

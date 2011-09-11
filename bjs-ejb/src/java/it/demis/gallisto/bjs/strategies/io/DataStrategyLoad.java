@@ -4,59 +4,57 @@
  */
 package it.demis.gallisto.bjs.strategies.io;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.PropertyException;
 import javax.xml.bind.Unmarshaller;
 
 /**
  *
  * @author Demis Gallisto
  */
-public class DataStrategyLoad {
+public class DataStrategyLoad extends DataStrategyIO {
 
   private volatile static DataStrategyLoad singleton;
+  private Unmarshaller unmarshaller;
 
   public static DataStrategyLoad getInstance() {
     if (DataStrategyLoad.singleton == null) {
       synchronized (DataStrategyLoad.class) {
         if (DataStrategyLoad.singleton == null) {
-          DataStrategyLoad.singleton = new DataStrategyLoad();
+          try {
+            DataStrategyLoad.singleton = new DataStrategyLoad();
+          } catch (final JAXBException _e) {
+            throw new IllegalStateException("jaxb unmarshaller not created", _e);
+          }
         }
       }
     }
     return DataStrategyLoad.singleton;
   }
 
-  public DataStrategyLoad() {
+  private DataStrategyLoad() throws JAXBException {
     super();
+    this.setFileName(System.getProperty("bjs.datastrategy.load.filename", "/META-INF/data_bj_basicstrategy.xml"));
+    this.unmarshaller = JAXBContext.newInstance(DataStrategy.class).createUnmarshaller();
   }
 
-  public DataStrategy load() throws DataStrategyIOException  {
-    
+  public DataStrategy load() throws DataStrategyIOException {
+
     DataStrategy res = null;
-    
+
     try {
-      
-
-      final Unmarshaller m = JAXBContext.newInstance(DataStrategy.class).createUnmarshaller();
-      DataStrategy ds = (DataStrategy) m.unmarshal(this.getClass().getResourceAsStream("/META-INF/data_bj_basicstrategy.xml"));
-      
-      
+      synchronized (this.unmarshaller) {
+        res = (DataStrategy) this.unmarshaller.unmarshal(this.getClass().getResourceAsStream(this.getFileName()));
+      }
+      if (_log.isLoggable(Level.INFO)) {
+        this._log.log(Level.INFO, "configuration file loaded: {0}", this.getFileName());
+      }
     } catch (final JAXBException _e) {
-      throw  new DataStrategyIOException(_e);
+      throw new DataStrategyIOException(_e);
     }
-    
+
     return res;
-  }
-
-  
-
-  public static void main(String[] args) throws DataStrategyIOException {
-    DataStrategy ds = DataStrategyLoad.getInstance().load();
-    
   }
 }

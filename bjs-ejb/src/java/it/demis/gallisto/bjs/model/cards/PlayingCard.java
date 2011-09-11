@@ -14,7 +14,7 @@ public interface PlayingCard extends Serializable {
 
   Facing getFacing();
 
-  void setFacing(final Facing _facing);
+  void setFacing(Facing _facing);
 
   String getValue();
   

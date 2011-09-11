@@ -39,7 +39,7 @@ public class FrenchCard extends AbstractCard implements PlayingCard {
             throw new IllegalArgumentException("broken preconditions: value is not >= 1 and <= 10");
           }
         } catch (final NumberFormatException _e) {
-          throw new IllegalArgumentException("broken preconditions: value is not a valid number (1..10) or J|Q|K");
+          throw new IllegalArgumentException("broken preconditions: value is not a valid number (1..10) or J|Q|K", _e);
         }
     }
     this.setSuit(_suit);
