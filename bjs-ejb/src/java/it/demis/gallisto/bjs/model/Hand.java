@@ -4,6 +4,7 @@
  */
 package it.demis.gallisto.bjs.model;
 
+import it.demis.gallisto.bjs.model.cards.Facing;
 import it.demis.gallisto.bjs.model.cards.PlayingCard;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,11 +45,57 @@ public class Hand {
   private List<PlayingCard> cards = new ArrayList<>();
 
   public List<PlayingCard> getCards() {
-    return this.cards;
+    List<PlayingCard> res = null;
+    try {
+      this.lock.readLock().lock();
+      res = this.cards;
+    } finally {
+      this.lock.readLock().unlock();
+    }
+    return res;
+  }
+
+  public List<PlayingCard> getCardsUp() {
+    List<PlayingCard> res = null;
+    try {
+      this.lock.readLock().lock();
+      if (this.getCards() != null) {
+        res = new ArrayList<>();
+        for (final PlayingCard card : this.getCards()) {
+          if (card != null) {
+            if (card.getFacing() != null && card.getFacing().equals(Facing.UP)) {
+              res.add(card);
+            }
+          }
+        }
+      }
+    } finally {
+      this.lock.readLock().unlock();
+    }
+    return res;
+  }
+
+  public PlayingCard getFirstCardUp() {
+    PlayingCard res = null;
+    try {
+      this.lock.readLock().lock();
+      final List<PlayingCard> cardsUp = this.getCardsUp();
+      if (cardsUp != null && cardsUp.size() > 0) {
+        res = cardsUp.get(0);
+      }
+    } finally {
+      this.lock.readLock().unlock();
+    }
+    return res;
   }
 
   protected void setCards(final List<PlayingCard> _cards) {
-    this.cards = _cards;
+    try {
+      this.lock.writeLock().lock();
+      this.cards = _cards;
+    } finally {
+      this.lock.writeLock().unlock();
+    }
   }
 
   public void addCard(final PlayingCard _card) {
@@ -82,24 +129,20 @@ public class Hand {
       this.lock.readLock().lock();
       for (final PlayingCard card : this.getCards()) {
         if (card != null) {
+          int cardValue = 0;
           try {
-            final int cardValue = Integer.parseInt(card.getValue());
-            if (cardValue == 1) {
-              acePresent = true;
-            } else {
-              val += cardValue;
-            }
+            cardValue = Integer.parseInt(card.getValue());
           } catch (final NullPointerException | NumberFormatException _e) {
             if (card.getValue() != null) {
               switch (card.getValue()) {
                 case "J":
-                  val += 10;
+                  cardValue = 10;
                   break;
                 case "Q":
-                  val += 10;
+                  cardValue = 10;
                   break;
                 case "K":
-                  val += 10;
+                  cardValue = 10;
                   break;
                 default:
                   throw new IllegalStateException("card value not supported: " + card.getValue());
@@ -107,6 +150,10 @@ public class Hand {
             } else {
               throw new IllegalStateException("not expected null card value", _e);
             }
+          }
+          val += cardValue;
+          if (cardValue == 1) {
+            acePresent = true;
           }
         }
       }

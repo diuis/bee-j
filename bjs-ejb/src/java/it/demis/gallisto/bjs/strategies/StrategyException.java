@@ -15,4 +15,8 @@ public class StrategyException extends Exception {
   public StrategyException(final String _message, final DataStrategyIOException _e) {
     super(_message, _e);
   }
+
+  public StrategyException(final String _message) {
+    super(_message);
+  }
 }

@@ -7,6 +7,10 @@ package it.demis.gallisto.bjs.strategies.impl;
 import it.demis.gallisto.bjs.strategies.AbstractGameStrategy;
 import it.demis.gallisto.bjs.model.Hand;
 import it.demis.gallisto.bjs.model.actors.Memory;
+import it.demis.gallisto.bjs.model.cards.BlackJackCardDecorator;
+import it.demis.gallisto.bjs.model.cards.FrenchCard;
+import it.demis.gallisto.bjs.model.cards.PlayingCard;
+import it.demis.gallisto.bjs.model.cards.PlayingCardDecorator;
 import it.demis.gallisto.bjs.strategies.Advice;
 import it.demis.gallisto.bjs.strategies.StrategyException;
 import it.demis.gallisto.bjs.strategies.io.DataStrategy;
@@ -41,6 +45,18 @@ public class BlackjackBasicStrategy extends AbstractGameStrategy {
         throw new StrategyException("error loading data strategy", _e);
       }
     }
+    final int dlhv = _dealerHand.getValue().getValue();
+    final int plhv = _playerHand.getValue().getValue();
+    
+    final PlayingCard dealerCard = _dealerHand.getFirstCardUp();
+    if (dealerCard instanceof FrenchCard) {
+      
+    } else {
+      throw new StrategyException(String.format("strategy %s is available only with FrenchCard type", this.getClass().getName()));
+    }
+    
+    //final PlayingCardDecorator dealerCard = new BlackJackCardDecorator(_dealerHand.getFirstCardUp());
+    
     if (_dealerHand.totalCards() >= 17) {
       res = Advice.STAY;
     } else {

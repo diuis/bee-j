@@ -3,6 +3,7 @@ package it.demis.gallisto.bjs.model.actors;
 import it.demis.gallisto.bjs.model.Hand;
 import it.demis.gallisto.bjs.model.cards.PlayingCard;
 import it.demis.gallisto.bjs.strategies.GameStrategy;
+import it.demis.gallisto.bjs.strategies.StrategyException;
 import it.demis.gallisto.bjs.strategies.impl.PlayerQualifier;
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +69,7 @@ public class Player extends GameActor {
     return "ciao ";
   }
 
-  public void play() {
+  public void play() throws StrategyException {
     for (final Hand h : this.getHands()) {
       this.getStrategy().getAdvice(h, null, null);
     }
