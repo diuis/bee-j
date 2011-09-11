@@ -33,7 +33,7 @@ public class XmlMapTypeEntry {
     return this.key;
   }
 
-  public void setKey(final Integer _key) {
+  private void setKey(final Integer _key) {
     this.key = _key;
   }
 
@@ -42,7 +42,7 @@ public class XmlMapTypeEntry {
     return this.val;
   }
 
-  public void setVal(final Integer _val) {
+  private void setVal(final Integer _val) {
     this.val = _val;
   }
 }

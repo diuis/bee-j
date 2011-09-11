@@ -8,6 +8,8 @@ import it.demis.gallisto.bjs.strategies.AbstractGameStrategy;
 import it.demis.gallisto.bjs.model.Hand;
 import it.demis.gallisto.bjs.model.actors.Memory;
 import it.demis.gallisto.bjs.strategies.Advice;
+import it.demis.gallisto.bjs.strategies.StrategyException;
+import java.util.logging.Level;
 
 /**
  *
@@ -21,12 +23,15 @@ public class DealerGameStrategy extends AbstractGameStrategy {
   }
 
   @Override
-  public Advice getAdvice(final Hand _playerHand, final Hand _dealerHand, final Memory _playerMemory) {
+  public Advice getAdvice(final Hand _playerHand, final Hand _dealerHand, final Memory _playerMemory) throws StrategyException {
     Advice res = null;
     if (_dealerHand.totalCards() >= 17) {
       res = Advice.STAY;
     } else {
       res = Advice.HIT;
+    }
+    if (this._log.isLoggable(Level.INFO)) {
+      this._log.log(Level.INFO, "advice is {0} for player hand {1}", new Object[]{res, _playerHand});
     }
     return res;
   }

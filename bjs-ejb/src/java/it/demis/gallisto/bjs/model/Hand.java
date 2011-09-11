@@ -17,12 +17,11 @@ public class Hand {
 
   public class HandValue {
 
-    private int value;
-    private boolean soft;
+    private int value = 0;
+    private boolean soft = false;
 
-    public HandValue(final int _value, final boolean _soft) {
-      this.setValue(_value);
-      this.setSoft(_soft);
+    public HandValue() {
+      super();
     }
 
     public boolean isSoft() {
@@ -41,7 +40,6 @@ public class Hand {
       this.value = _value;
     }
   }
-  
   private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
   private List<PlayingCard> cards = new ArrayList<>();
 
@@ -76,10 +74,11 @@ public class Hand {
     return res;
   }
 
-  public int getValue() {
-    int res = 0;
+  public HandValue getValue() {
+    HandValue res = new HandValue();
     boolean acePresent = false;
     try {
+      int val = 0;
       this.lock.readLock().lock();
       for (final PlayingCard card : this.getCards()) {
         if (card != null) {
@@ -88,19 +87,19 @@ public class Hand {
             if (cardValue == 1) {
               acePresent = true;
             } else {
-              res += cardValue;
+              val += cardValue;
             }
           } catch (final NullPointerException | NumberFormatException _e) {
             if (card.getValue() != null) {
               switch (card.getValue()) {
                 case "J":
-                  res += 10;
+                  val += 10;
                   break;
                 case "Q":
-                  res += 10;
+                  val += 10;
                   break;
                 case "K":
-                  res += 10;
+                  val += 10;
                   break;
                 default:
                   throw new IllegalStateException("card value not supported: " + card.getValue());
@@ -109,11 +108,16 @@ public class Hand {
               throw new IllegalStateException("not expected null card value", _e);
             }
           }
-
         }
       }
+      boolean soft = false;
       if (acePresent) {
+        if (val + 10 <= 21) {
+          soft = true;
+        }
       }
+      res.setValue(val);
+      res.setSoft(soft);
     } finally {
       this.lock.readLock().unlock();
     }

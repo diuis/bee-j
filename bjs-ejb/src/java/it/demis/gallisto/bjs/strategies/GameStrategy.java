@@ -12,8 +12,8 @@ import it.demis.gallisto.bjs.model.actors.Memory;
  * @author Demis Gallisto
  */
 public interface GameStrategy {
-  
+
   String getName();
-  
-  Advice getAdvice(Hand _playerHand, Hand _dealerHand, Memory _playerMemory);
+
+  Advice getAdvice(Hand _playerHand, Hand _dealerHand, Memory _playerMemory) throws StrategyException;
 }

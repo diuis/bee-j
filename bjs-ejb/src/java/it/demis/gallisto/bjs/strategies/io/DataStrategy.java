@@ -4,7 +4,7 @@
  */
 package it.demis.gallisto.bjs.strategies.io;
 
-import java.util.Arrays;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * @author Demis Gallisto
  */
 @XmlRootElement(namespace = "http://demis.gallisto.it/bjs")
-public class DataStrategy {
+public class DataStrategy implements Serializable {
 
   private Logger log = Logger.getLogger(this.getClass().getName());
   private String[][] hard;
@@ -38,29 +38,29 @@ public class DataStrategy {
   }
 
   @XmlJavaTypeAdapter(XmlMapTypeAdapter.class)
-  public Map getPlHardMapping() {
+  public Map getPlayerHardMapping() {
     return this.plHardMapping;
   }
 
-  public void setPlHardMapping(final Map _plHardMapping) {
+  public void setPlayerHardMapping(final Map _plHardMapping) {
     this.plHardMapping = _plHardMapping;
   }
 
   @XmlJavaTypeAdapter(XmlMapTypeAdapter.class)
-  public Map getPlPairMapping() {
+  public Map getPlayerPairMapping() {
     return this.plPairMapping;
   }
 
-  public void setPlPairMapping(final Map _plPairMapping) {
+  public void setPlayerPairMapping(final Map _plPairMapping) {
     this.plPairMapping = _plPairMapping;
   }
 
   @XmlJavaTypeAdapter(XmlMapTypeAdapter.class)
-  public Map getPlSoftMapping() {
+  public Map getPlayerSoftMapping() {
     return this.plSoftMapping;
   }
 
-  public void setPlSoftMapping(final Map _plSoftMapping) {
+  public void setPlayerSoftMapping(final Map _plSoftMapping) {
     this.plSoftMapping = _plSoftMapping;
   }
 
@@ -89,42 +89,5 @@ public class DataStrategy {
 
   public void setSoft(final String[][] _soft) {
     this.soft = _soft;
-  }
-
-  public void init() {
-    this.hard = new String[10][16];
-    this.soft = new String[10][8];
-    this.pair = new String[10][10];
-
-    this.hard = new String[][]{{"hi", "hi", "hi", "hi", "hi", "hi", "hi", "hi", "hi", "hi"},
-      {"hi", "dh", "dh", "dh", "dh", "hi", "hi", "hi", "hi", "hi"},
-      {"dh", "dh", "dh", "dh", "dh", "dh", "dh", "dh", "hi", "hi"},
-      {"dh", "dh", "dh", "dh", "dh", "dh", "dh", "dh", "dh", "hi"},
-      {"hi", "hi", "st", "st", "st", "hi", "hi", "hi", "hi", "hi"},
-      {"st", "st", "st", "st", "st", "hi", "hi", "hi", "hi", "hi"},
-      {"st", "st", "st", "st", "st", "hi", "hi", "hi", "su", "hi"},
-      {"st", "st", "st", "st", "st", "hi", "hi", "su", "su", "su"},
-      {"st", "st", "st", "st", "st", "st", "st", "st", "st", "st"}};
-
-    this.soft = new String[][]{{"hi", "hi", "hi", "dh", "dh", "hi", "hi", "hi", "hi", "hi"},
-      {"hi", "hi", "dh", "dh", "dh", "hi", "hi", "hi", "hi", "hi"},
-      {"hi", "dh", "dh", "dh", "dh", "hi", "hi", "hi", "hi", "hi"},
-      {"st", "ds", "ds", "ds", "ds", "st", "st", "hi", "hi", "hi"},
-      {"st", "st", "st", "st", "st", "st", "st", "st", "st", "st"}};
-
-    this.pair = new String[][]{{"sp", "sp", "sp", "sp", "sp", "sp", "hi", "hi", "hi", "hi"},
-      {"hi", "hi", "hi", "sp", "sp", "hi", "hi", "hi", "hi", "hi"},
-      {"dh", "dh", "dh", "dh", "dh", "dh", "dh", "dh", "hi", "hi"},
-      {"sp", "sp", "sp", "sp", "sp", "hi", "hi", "hi", "hi", "hi"},
-      {"sp", "sp", "sp", "sp", "sp", "sp", "hi", "hi", "hi", "hi"},
-      {"sp", "sp", "sp", "sp", "sp", "sp", "sp", "sp", "sp", "sp"},
-      {"sp", "sp", "sp", "sp", "sp", "st", "sp", "sp", "st", "st"},
-      {"st", "st", "st", "st", "st", "st", "st", "st", "st", "st"},
-      {"sp", "sp", "sp", "sp", "sp", "sp", "sp", "sp", "sp", "sp"}};
-
-    log.info("hard initialized: " + Arrays.deepToString(this.hard));
-    log.info("soft initialized: " + Arrays.deepToString(this.soft));
-    log.info("pair initialized: " + Arrays.deepToString(this.pair));
-
   }
 }

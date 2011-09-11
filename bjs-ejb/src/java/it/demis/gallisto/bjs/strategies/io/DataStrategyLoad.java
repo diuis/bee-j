@@ -4,8 +4,9 @@
  */
 package it.demis.gallisto.bjs.strategies.io;
 
+import it.demis.gallisto.bjs.utils.Cache;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.inject.Singleton;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -18,6 +19,8 @@ public class DataStrategyLoad extends DataStrategyIO {
 
   private volatile static DataStrategyLoad singleton;
   private Unmarshaller unmarshaller;
+  @Singleton
+  private Cache<String, DataStrategy> cache;
 
   public static DataStrategyLoad getInstance() {
     if (DataStrategyLoad.singleton == null) {
@@ -46,7 +49,18 @@ public class DataStrategyLoad extends DataStrategyIO {
 
     try {
       synchronized (this.unmarshaller) {
-        res = (DataStrategy) this.unmarshaller.unmarshal(this.getClass().getResourceAsStream(this.getFileName()));
+        DataStrategy dataCached = null;
+        if (this.cache != null) {
+          dataCached = this.cache.get(this.getClass().getName());
+        }
+        if (dataCached == null) {
+          res = (DataStrategy) this.unmarshaller.unmarshal(this.getClass().getResourceAsStream(this.getFileName()));
+          if (res != null && this.cache != null) {
+            this.cache.put(this.getClass().getName(), res);
+          }
+        } else {
+          res = dataCached;
+        }
       }
       if (_log.isLoggable(Level.INFO)) {
         this._log.log(Level.INFO, "configuration file loaded: {0}", this.getFileName());
