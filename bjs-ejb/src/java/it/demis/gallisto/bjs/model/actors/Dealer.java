@@ -70,6 +70,7 @@ public class Dealer extends GameActor {
     return res;
   }
 
+  @Override
   @Inject
   public void setStrategy(@DealerQualifier final GameStrategy _strategy) {
     super.setStrategy(_strategy);

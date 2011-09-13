@@ -44,7 +44,7 @@ public class Hand {
   private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
   private List<PlayingCard> cards = new ArrayList<>();
 
-  public List<PlayingCard> getCards() {
+  public List<PlayingCard> getAllCards() {
     List<PlayingCard> res = null;
     try {
       this.lock.readLock().lock();
@@ -55,13 +55,13 @@ public class Hand {
     return res;
   }
 
-  public List<PlayingCard> getCardsUp() {
+  public List<PlayingCard> getUpCards() {
     List<PlayingCard> res = null;
     try {
       this.lock.readLock().lock();
-      if (this.getCards() != null) {
+      if (this.getAllCards() != null) {
         res = new ArrayList<>();
-        for (final PlayingCard card : this.getCards()) {
+        for (final PlayingCard card : this.getAllCards()) {
           if (card != null) {
             if (card.getFacing() != null && card.getFacing().equals(Facing.UP)) {
               res.add(card);
@@ -75,11 +75,11 @@ public class Hand {
     return res;
   }
 
-  public PlayingCard getFirstCardUp() {
+  public PlayingCard getFirstUpCard() {
     PlayingCard res = null;
     try {
       this.lock.readLock().lock();
-      final List<PlayingCard> cardsUp = this.getCardsUp();
+      final List<PlayingCard> cardsUp = this.getUpCards();
       if (cardsUp != null && cardsUp.size() > 0) {
         res = cardsUp.get(0);
       }
@@ -104,7 +104,7 @@ public class Hand {
     }
     try {
       this.lock.writeLock().lock();
-      this.getCards().add(_card);
+      this.getAllCards().add(_card);
     } finally {
       this.lock.writeLock().unlock();
     }
@@ -114,7 +114,7 @@ public class Hand {
     int res = 0;
     try {
       this.lock.readLock().lock();
-      res = this.getCards().size();
+      res = this.getAllCards().size();
     } finally {
       this.lock.readLock().unlock();
     }
@@ -153,7 +153,7 @@ public class Hand {
     try {
       int val = 0;
       this.lock.readLock().lock();
-      for (final PlayingCard card : this.getCardsUp()) {
+      for (final PlayingCard card : this.getUpCards()) {
         if (card != null) {
           int cardValue = this.translateValue(card);
           val += cardValue;
@@ -182,7 +182,7 @@ public class Hand {
     try {
       int val = 0;
       this.lock.readLock().lock();
-      for (final PlayingCard card : this.getCards()) {
+      for (final PlayingCard card : this.getAllCards()) {
         if (card != null) {
           int cardValue = this.translateValue(card);
           val += cardValue;
@@ -205,30 +205,52 @@ public class Hand {
     return res;
   }
 
-  public boolean isAcePresentOnAllCards() {
+  public boolean isOnePair() {
     boolean res = false;
-    final List<PlayingCard> cardsList = this.getCards();
-    if (cardsList != null && cardsList.size() > 0) {
-      for (final PlayingCard card : cardsList) {
-        if (card != null && card.getValue().equals("1")) {
-          res = true;
-          break;
-        }
-      }
+    try {
+      this.lock.readLock().lock();
+
+      
+    } finally {
+      this.lock.readLock().unlock();
     }
     return res;
   }
 
-  public boolean isAcePresentOnCardsUp() {
+  public boolean isAcePresentOnAllCards() {
     boolean res = false;
-    final List<PlayingCard> cardsList = this.getCardsUp();
-    if (cardsList != null && cardsList.size() > 0) {
-      for (final PlayingCard card : cardsList) {
-        if (card != null && card.getValue().equals("1")) {
-          res = true;
-          break;
+    try {
+      this.lock.readLock().lock();
+      final List<PlayingCard> cardsList = this.getAllCards();
+      if (cardsList != null && cardsList.size() > 0) {
+        for (final PlayingCard card : cardsList) {
+          if (card != null && card.getValue().equals("1")) {
+            res = true;
+            break;
+          }
         }
       }
+    } finally {
+      this.lock.readLock().unlock();
+    }
+    return res;
+  }
+
+  public boolean isAcePresentOnUpCards() {
+    boolean res = false;
+    try {
+      this.lock.readLock().lock();
+      final List<PlayingCard> cardsList = this.getUpCards();
+      if (cardsList != null && cardsList.size() > 0) {
+        for (final PlayingCard card : cardsList) {
+          if (card != null && card.getValue().equals("1")) {
+            res = true;
+            break;
+          }
+        }
+      }
+    } finally {
+      this.lock.readLock().unlock();
     }
     return res;
   }

@@ -14,6 +14,7 @@ public abstract class AbstractGameStrategy implements GameStrategy {
 
   protected final Logger _log = Logger.getLogger(this.getClass().getName());
 
+  @Override
   public String getName() {
     return this.getClass().getSimpleName();
   }

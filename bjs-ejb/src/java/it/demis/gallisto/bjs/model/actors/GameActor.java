@@ -38,6 +38,7 @@ public abstract class GameActor {
     this.strategy = _strategy;
   }
 
+  @Override
   public String toString() {
     return "GameActor{" + "strategy=" + strategy + ", name=" + name + '}';
   }

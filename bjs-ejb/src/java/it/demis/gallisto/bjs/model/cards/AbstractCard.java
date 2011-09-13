@@ -17,10 +17,12 @@ public abstract class AbstractCard implements PlayingCard {
   @NotNull
   protected String value;
 
+  @Override
   public Facing getFacing() {
     return this.facing;
   }
 
+  @Override
   public String getSuit() {
     String res = null;
     if (this.getFacing().equals(Facing.DOWN)) {
@@ -42,6 +44,7 @@ public abstract class AbstractCard implements PlayingCard {
     return res;
   }
 
+  @Override
   public void setFacing(final Facing _facing) {
     this.facing = _facing;
   }

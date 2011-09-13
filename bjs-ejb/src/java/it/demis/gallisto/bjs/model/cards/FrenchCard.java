@@ -45,6 +45,7 @@ public class FrenchCard extends AbstractCard implements PlayingCard {
     this.setSuit(_suit);
   }
 
+  @Override
   public String toString() {
     return "FrenchCard{" + "value=" + this.getValue() + ", suit=" + this.getSuit() + '}';
   }

@@ -82,6 +82,7 @@ public class Player extends GameActor {
   public void hit() {
   }
 
+  @Override
   @Inject
   public void setStrategy(@PlayerQualifier final GameStrategy _strategy) {
     super.setStrategy(_strategy);

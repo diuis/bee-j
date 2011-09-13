@@ -40,6 +40,7 @@ public class BlackJackCardDecorator implements PlayingCardDecorator {
     return this.card.getSuit();
   }
 
+  @Override
   public int getCalculatedValue() {
     int res = 0;
     try {

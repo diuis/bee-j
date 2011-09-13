@@ -19,7 +19,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlRootElement(namespace = "http://demis.gallisto.it/bjs")
 public class DataStrategy implements Serializable {
 
-  private Logger log = Logger.getLogger(this.getClass().getName());
   private String[][] hard;
   private String[][] soft;
   private String[][] pair;

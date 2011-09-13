@@ -35,6 +35,7 @@ public class BlackjackTable implements GameTable {
     this._log.log(Level.INFO, "blackjack table created: the dealer names is {0} and the player name is {1}", new Object[]{this.getDealer().getName(), this.getPlayer().getName()});
   }
 
+  @Override
   public Dealer getDealer() {
     return dealer;
   }
@@ -43,6 +44,7 @@ public class BlackjackTable implements GameTable {
     this.dealer = _dealer;
   }
 
+  @Override
   public Player getPlayer() {
     return player;
   }

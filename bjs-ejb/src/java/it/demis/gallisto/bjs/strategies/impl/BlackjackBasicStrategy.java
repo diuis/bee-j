@@ -31,6 +31,7 @@ public class BlackjackBasicStrategy extends AbstractGameStrategy {
     super();
   }
 
+  @Override
   public String toString() {
     return "BlackjackBasicStrategy{" + '}';
   }
@@ -51,21 +52,23 @@ public class BlackjackBasicStrategy extends AbstractGameStrategy {
       }
     }
 
-    final PlayingCard dealerCard = _dealerHand.getFirstCardUp();
+    final PlayingCard dealerCard = _dealerHand.getFirstUpCard();
     if (dealerCard instanceof FrenchCard) {
 
       final int dealerHandCalculatedValue = new BlackJackCardDecorator((FrenchCard) dealerCard).getCalculatedValue();
 
       final Integer dealerMappingIndex = this.dataStrategy.getDealerMapping().get(dealerHandCalculatedValue);
       if (dealerMappingIndex != null) {
-        final List<PlayingCard> playerCards = _playerHand.getCardsUp();
+        final List<PlayingCard> playerCards = _playerHand.getUpCards();
         if (playerCards != null && playerCards.size() > 0) {
+
           int playerHandValue = 0;
           for (final PlayingCard playerCard : playerCards) {
             final int playerHandCalculatedValue = new BlackJackCardDecorator((FrenchCard) playerCard).getCalculatedValue();
             playerHandValue += playerHandCalculatedValue;
           }
           this.dataStrategy.
+        
         } else {
           // no cards in player's hand
           res = Advice.HIT;
