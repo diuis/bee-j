@@ -25,7 +25,7 @@ public class DealerGameStrategy extends AbstractGameStrategy {
   @Override
   public Advice getAdvice(final Hand _playerHand, final Hand _dealerHand, final Memory _playerMemory) throws StrategyException {
     Advice res = null;
-    if (_dealerHand.getValue().getValue() >= 17) {
+    if (_dealerHand.getValueOfAllCards().getValue() >= 17) {
       res = Advice.STAY;
     } else {
       res = Advice.HIT;

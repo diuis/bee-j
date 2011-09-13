@@ -43,10 +43,10 @@ public class BlackJackCardDecorator implements PlayingCardDecorator {
   public int getCalculatedValue() {
     int res = 0;
     try {
-      res = Integer.parseInt(this.card.getValue());
+      res = Integer.parseInt(this.getValue());
     } catch (final NullPointerException | NumberFormatException _e) {
-      if (this.card.getValue() != null) {
-        switch (this.card.getValue()) {
+      if (this.getValue() != null) {
+        switch (this.getValue()) {
           case "J":
             res = 10;
             break;
@@ -57,7 +57,7 @@ public class BlackJackCardDecorator implements PlayingCardDecorator {
             res = 10;
             break;
           default:
-            throw new IllegalStateException("card value not supported: " + card.getValue());
+            throw new IllegalStateException("card value not supported: " + this.getValue());
         }
       } else {
         throw new IllegalStateException("not expected null card value", _e);
