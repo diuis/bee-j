@@ -7,7 +7,6 @@ package it.demis.gallisto.bjs.strategies.io;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -37,7 +36,7 @@ public class DataStrategy implements Serializable {
   }
 
   @XmlJavaTypeAdapter(XmlMapTypeAdapter.class)
-  public Map getPlayerHardMapping() {
+  public Map<Integer, Integer> getPlayerHardMapping() {
     return this.plHardMapping;
   }
 
@@ -46,7 +45,7 @@ public class DataStrategy implements Serializable {
   }
 
   @XmlJavaTypeAdapter(XmlMapTypeAdapter.class)
-  public Map getPlayerPairMapping() {
+  public Map<Integer, Integer> getPlayerPairMapping() {
     return this.plPairMapping;
   }
 
@@ -55,7 +54,7 @@ public class DataStrategy implements Serializable {
   }
 
   @XmlJavaTypeAdapter(XmlMapTypeAdapter.class)
-  public Map getPlayerSoftMapping() {
+  public Map<Integer, Integer> getPlayerSoftMapping() {
     return this.plSoftMapping;
   }
 

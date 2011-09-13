@@ -57,22 +57,42 @@ public class BlackjackBasicStrategy extends AbstractGameStrategy {
 
       final int dealerHandCalculatedValue = new BlackJackCardDecorator((FrenchCard) dealerCard).getCalculatedValue();
 
-      final Integer dealerMappingIndex = this.dataStrategy.getDealerMapping().get(dealerHandCalculatedValue);
-      if (dealerMappingIndex != null) {
-        final List<PlayingCard> playerCards = _playerHand.getUpCards();
-        if (playerCards != null && playerCards.size() > 0) {
+      final Integer indexArrayD = this.dataStrategy.getDealerMapping().get(dealerHandCalculatedValue);
 
-          int playerHandValue = 0;
-          for (final PlayingCard playerCard : playerCards) {
-            final int playerHandCalculatedValue = new BlackJackCardDecorator((FrenchCard) playerCard).getCalculatedValue();
-            playerHandValue += playerHandCalculatedValue;
-          }
-          this.dataStrategy.
-        
+      final int totUpCards = _playerHand.totalUpCards();
+      if (totUpCards > 0) {
+        final Hand.HandValue handValue = _playerHand.getValueOfUpCards();
+
+        if (handValue.isPair()) {
+          final Integer idxLookup = handValue.getValue() / 2;
+          final Integer idxArrayP = this.dataStrategy.getPlayerPairMapping().get(idxLookup);
+          final String[][] arr = this.dataStrategy.getPair();
+          final String adviceStr = arr[indexArrayD][idxArrayP];
+          // resolve advice
         } else {
-          // no cards in player's hand
-          res = Advice.HIT;
+          if (handValue.isSoft() && totUpCards == 2) {
+            final int v1 = new BlackJackCardDecorator((FrenchCard) _playerHand.getUpCards().get(0)).getCalculatedValue();
+            final int v2 = new BlackJackCardDecorator((FrenchCard) _playerHand.getUpCards().get(1)).getCalculatedValue();
+            final Integer idxLookup = Math.max(v1, v2);
+            final Integer idxArrayP = this.dataStrategy.getPlayerSoftMapping().get(idxLookup);
+            final String[][] arr = this.dataStrategy.getSoft();
+            final String adviceStr = arr[indexArrayD][idxArrayP];
+            // resolve advice
+
+          }
         }
+        if (res == null) {
+          // default or hard
+          final Integer idxLookup = handValue.getValue();
+          final Integer idxArrayP = this.dataStrategy.getPlayerHardMapping().get(idxLookup);
+          final String[][] arr = this.dataStrategy.getSoft();
+            final String adviceStr = arr[indexArrayD][idxArrayP];
+            // resolve advice
+        }
+
+      } else {
+        // no cards
+        res = Advice.HIT;
       }
 
     } else {
@@ -81,11 +101,6 @@ public class BlackjackBasicStrategy extends AbstractGameStrategy {
 
 
 
-    if (_dealerHand.totalCards() >= 17) {
-      res = Advice.STAY;
-    } else {
-      res = Advice.HIT;
-    }
     if (this._log.isLoggable(Level.INFO)) {
       this._log.log(Level.INFO, "advice is {0} for player hand {1}", new Object[]{res, _playerHand});
     }

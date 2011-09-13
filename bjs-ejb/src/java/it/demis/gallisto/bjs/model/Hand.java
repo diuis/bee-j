@@ -20,6 +20,7 @@ public class Hand {
 
     private int value = 0;
     private boolean soft = false;
+    private boolean pair = false;
 
     public HandValue() {
       super();
@@ -39,6 +40,14 @@ public class Hand {
 
     private void setValue(final int _value) {
       this.value = _value;
+    }
+
+    public boolean isPair() {
+      return pair;
+    }
+
+    private void setPair(final boolean _pair) {
+      this.pair = _pair;
     }
   }
   private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
@@ -110,11 +119,22 @@ public class Hand {
     }
   }
 
-  public int totalCards() {
+  public int totalAllCards() {
     int res = 0;
     try {
       this.lock.readLock().lock();
       res = this.getAllCards().size();
+    } finally {
+      this.lock.readLock().unlock();
+    }
+    return res;
+  }
+
+  public int totalUpCards() {
+    int res = 0;
+    try {
+      this.lock.readLock().lock();
+      res = this.getUpCards().size();
     } finally {
       this.lock.readLock().unlock();
     }
@@ -153,7 +173,8 @@ public class Hand {
     try {
       int val = 0;
       this.lock.readLock().lock();
-      for (final PlayingCard card : this.getUpCards()) {
+      final List<PlayingCard> cardsList = this.getUpCards();
+      for (final PlayingCard card : cardsList) {
         if (card != null) {
           int cardValue = this.translateValue(card);
           val += cardValue;
@@ -168,8 +189,19 @@ public class Hand {
           soft = true;
         }
       }
+      boolean pair = false;
+      if (cardsList.size() == 2) {
+        final PlayingCard c1 = cardsList.get(0);
+        final PlayingCard c2 = cardsList.get(1);
+        if (c1 != null && c2 != null) {
+          if (c1.getValue() != null && c2.getValue() != null) {
+            pair = c1.getValue().equals(c2.getValue());
+          }
+        }
+      }
       res.setValue(val);
       res.setSoft(soft);
+      res.setPair(pair);
     } finally {
       this.lock.readLock().unlock();
     }
@@ -182,6 +214,7 @@ public class Hand {
     try {
       int val = 0;
       this.lock.readLock().lock();
+      final List<PlayingCard> cardsList = this.getAllCards();
       for (final PlayingCard card : this.getAllCards()) {
         if (card != null) {
           int cardValue = this.translateValue(card);
@@ -197,20 +230,19 @@ public class Hand {
           soft = true;
         }
       }
+      boolean pair = false;
+      if (cardsList.size() == 2) {
+        final PlayingCard c1 = cardsList.get(0);
+        final PlayingCard c2 = cardsList.get(1);
+        if (c1 != null && c2 != null) {
+          if (c1.getValue() != null && c2.getValue() != null) {
+            pair = c1.getValue().equals(c2.getValue());
+          }
+        }
+      }
       res.setValue(val);
       res.setSoft(soft);
-    } finally {
-      this.lock.readLock().unlock();
-    }
-    return res;
-  }
-
-  public boolean isOnePair() {
-    boolean res = false;
-    try {
-      this.lock.readLock().lock();
-
-      
+      res.setPair(pair);
     } finally {
       this.lock.readLock().unlock();
     }
