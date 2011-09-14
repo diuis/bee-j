@@ -30,7 +30,7 @@
               <h:outputText value="strategy " />
               <h:outputText value="#{game.table.dealer.strategy.name}" />
               <h:outputText value="hand " />
-              <p:dataGrid var="card" value="#{game.table.dealer.hand.cards}" columns="2" rows ="1">
+              <p:dataGrid var="card" value="#{game.table.dealer.hand.upCards}" columns="2" rows ="1">
                 <p:column>
                   <h:outputText value="[" />
                   <h:outputText value="#{card.value}" />
@@ -40,7 +40,7 @@
                 </p:column>
               </p:dataGrid>
               <h:outputText value="dealer hand total cards " />
-              <h:outputText value="#{game.table.dealer.hand.totalCards()}" />
+              <h:outputText value="#{game.table.dealer.hand.totalAllCards()}" />
             </h:panelGrid>
           </p:panel>
 
@@ -53,7 +53,7 @@
               <h:outputText value="hands " /> 
               <p:dataGrid var="hand" value="#{game.table.player.hands}" columns="1" rows="2" effect="true">
                 <p:column>
-                  <p:dataGrid var="card" value="#{hand.cards}" columns="2" rows ="1">
+                  <p:dataGrid var="card" value="#{hand.upCards}" columns="2" rows ="1">
                     <p:column>
                       <h:outputText value="[" />
                       <h:outputText value="#{card.value}" />
@@ -66,7 +66,7 @@
                   <p:commandButton value="hit" actionListener="#{game.table.player.hit}" update="msgs"/> 
                   <p:commandButton value="Advice" onclick="adviceDialog.show();" type="button"/>  
                   <p:dialog header="Player advice" widgetVar="adviceDialog" modal="true" height="200">  
-                    <h:outputText value="#{game.table.player.advice}" />  
+                    <h:outputText value="#{game.advice}" />  
                   </p:dialog>
                 </p:column>
               </p:dataGrid>

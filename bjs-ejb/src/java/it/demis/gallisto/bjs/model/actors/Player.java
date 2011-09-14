@@ -63,10 +63,10 @@ public class Player extends GameActor {
     this.hands = _hands;
   }
 
-  public String getAdvice() {
+  public String getAdvice(final Hand _dealerHand) throws StrategyException {
     String res = null;
-
-    return "ciao ";
+    res = this.getStrategy().getAdvice(this.getHands().get(0), _dealerHand, null).name();
+    return res;
   }
 
   public void play() throws StrategyException {

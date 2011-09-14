@@ -8,13 +8,13 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
-import javax.inject.Singleton;
+import javax.enterprise.context.Dependent;
 
 /**
  *
  * @author Demis Gallisto
  */
-@Singleton
+@Dependent
 public class VerySimpleCache<K extends String, T extends Serializable> implements Cache<K, T> {
 
   private Map<K, T> map = new HashMap<>();

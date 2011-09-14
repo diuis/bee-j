@@ -15,7 +15,6 @@ import it.demis.gallisto.bjs.strategies.StrategyException;
 import it.demis.gallisto.bjs.strategies.io.DataStrategy;
 import it.demis.gallisto.bjs.strategies.io.DataStrategyIOException;
 import it.demis.gallisto.bjs.strategies.io.DataStrategyLoad;
-import java.util.List;
 import java.util.logging.Level;
 
 /**
@@ -68,7 +67,7 @@ public class BlackjackBasicStrategy extends AbstractGameStrategy {
           final Integer idxArrayP = this.dataStrategy.getPlayerPairMapping().get(idxLookup);
           final String[][] arr = this.dataStrategy.getPair();
           final String adviceStr = arr[indexArrayD][idxArrayP];
-          // resolve advice
+          res = this.resolveAdvice(adviceStr);
         } else {
           if (handValue.isSoft() && totUpCards == 2) {
             final int v1 = new BlackJackCardDecorator((FrenchCard) _playerHand.getUpCards().get(0)).getCalculatedValue();
@@ -77,7 +76,7 @@ public class BlackjackBasicStrategy extends AbstractGameStrategy {
             final Integer idxArrayP = this.dataStrategy.getPlayerSoftMapping().get(idxLookup);
             final String[][] arr = this.dataStrategy.getSoft();
             final String adviceStr = arr[indexArrayD][idxArrayP];
-            // resolve advice
+            res = this.resolveAdvice(adviceStr);
 
           }
         }
@@ -86,8 +85,8 @@ public class BlackjackBasicStrategy extends AbstractGameStrategy {
           final Integer idxLookup = handValue.getValue();
           final Integer idxArrayP = this.dataStrategy.getPlayerHardMapping().get(idxLookup);
           final String[][] arr = this.dataStrategy.getSoft();
-            final String adviceStr = arr[indexArrayD][idxArrayP];
-            // resolve advice
+          final String adviceStr = arr[indexArrayD][idxArrayP];
+          res = this.resolveAdvice(adviceStr);
         }
 
       } else {
@@ -103,6 +102,28 @@ public class BlackjackBasicStrategy extends AbstractGameStrategy {
 
     if (this._log.isLoggable(Level.INFO)) {
       this._log.log(Level.INFO, "advice is {0} for player hand {1}", new Object[]{res, _playerHand});
+    }
+    return res;
+  }
+
+  private Advice resolveAdvice(final String _code) {
+    Advice res = null;
+    switch (_code) {
+      case "hi":
+        res = Advice.HIT;
+        break;
+      case "st":
+        res = Advice.STAY;
+        break;
+      case "su":
+        res = Advice.SURRENDER;
+        break;
+      case "dh":
+        res = Advice.DOUBLE_DOWN;
+        break;
+      case "sp":
+        res = Advice.SPLIT;
+        break;
     }
     return res;
   }

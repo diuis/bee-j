@@ -4,7 +4,8 @@
  */
 package it.demis.gallisto.bjs.web;
 
-import it.demis.gallisto.bjs.model.GameTable;
+import it.demis.gallisto.bjs.model.BlackjackTable;
+import it.demis.gallisto.bjs.strategies.StrategyException;
 import java.util.Date;
 
 import java.util.logging.Logger;
@@ -23,7 +24,7 @@ public class GameManagedBean {
   private final Logger log = Logger.getLogger(this.getClass().getName());
   private Date startDate;
   @Inject
-  private GameTable table;
+  private BlackjackTable table;
   private boolean gameStarted;
 
   public boolean isGameStarted() {
@@ -34,11 +35,11 @@ public class GameManagedBean {
     this.gameStarted = _gameStarted;
   }
 
-  public GameTable getTable() {
+  public BlackjackTable getTable() {
     return table;
   }
 
-  protected void setTable(final GameTable _table) {
+  protected void setTable(final BlackjackTable _table) {
     this.table = _table;
   }
 
@@ -52,6 +53,16 @@ public class GameManagedBean {
 
   public GameManagedBean() {
     super();
+  }
+
+  public String getAdvice() {
+    String res = null;
+    try {
+      res = this.getTable().getPlayer().getAdvice(this.getTable().getDealer().getHand());
+    } catch (final StrategyException _e) {
+      _e.printStackTrace();
+    }
+    return res;
   }
 
   public void newGame() {
