@@ -50,29 +50,25 @@
               <h:outputText value="#{game.table.player.name}" />
               <h:outputText value="strategy " /> 
               <h:outputText value="#{game.table.player.strategy.name}" />
-              <h:outputText value="hands " /> 
-              <p:dataGrid var="hand" value="#{game.table.player.hands}" columns="1" rows="2" effect="true">
+              <h:outputText value="hands " />
+              <p:dataGrid var="card" value="#{game.table.player.hand.upCards}" columns="2" rows ="1">
                 <p:column>
-                  <p:dataGrid var="card" value="#{hand.upCards}" columns="2" rows ="1">
-                    <p:column>
-                      <h:outputText value="[" />
-                      <h:outputText value="#{card.value}" />
-                      <h:outputText value=" " />
-                      <h:outputText value="#{card.suit}" />
-                      <h:outputText value="]" />
-                    </p:column>
-                  </p:dataGrid>
-                  <p:commandButton value="stay" actionListener="#{game.table.player.stay}" update="msgs"/>
-                  <p:commandButton value="hit" actionListener="#{game.table.player.hit}" update="msgs"/> 
-                  <p:commandButton value="Advice" onclick="adviceDialog.show();" type="button"/>  
-                  <p:dialog header="Player advice" widgetVar="adviceDialog" modal="true" height="200">  
-                    <h:outputText value="#{game.advice}" />  
-                  </p:dialog>
+                  <h:outputText value="[" />
+                  <h:outputText value="#{card.value}" />
+                  <h:outputText value=" " />
+                  <h:outputText value="#{card.suit}" />
+                  <h:outputText value="]" />
                 </p:column>
               </p:dataGrid>
+              <p:commandButton value="stay" actionListener="#{game.table.player.stay}" update="msgs"/>
+              <p:commandButton value="hit" actionListener="#{game.table.player.hit}" update="msgs"/> 
+              <p:commandButton value="Advice" onclick="adviceDialog.show();" type="button"/>  
+              <p:dialog header="Player advice" widgetVar="adviceDialog" modal="true" height="200">  
+                <h:outputText value="#{game.advice}" />  
+              </p:dialog>
             </h:panelGrid>
           </p:panel>
-          
+
         </h:form>
       </p:panel>
     </p:panel>

@@ -5,8 +5,6 @@ import it.demis.gallisto.bjs.model.cards.PlayingCard;
 import it.demis.gallisto.bjs.strategies.GameStrategy;
 import it.demis.gallisto.bjs.strategies.StrategyException;
 import it.demis.gallisto.bjs.strategies.impl.PlayerQualifier;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
 import javax.annotation.ManagedBean;
@@ -20,7 +18,7 @@ import javax.inject.Inject;
 @ManagedBean
 public class Player extends GameActor {
 
-  private List<Hand> hands = new ArrayList<>();
+  private Hand hand = new Hand();
 
   public Player() {
     this(null);
@@ -40,14 +38,13 @@ public class Player extends GameActor {
     if (_card == null || _card.length != 2) {
       throw new IllegalArgumentException("not valid parameter card: it's null or its size is != 2");
     }
-    final Hand hand = new Hand();
+    this.setHand(new Hand());
     for (final PlayingCard itm : _card) {
       if (itm == null) {
         throw new IllegalArgumentException("not valid parameter card array: one of its element is null");
       }
-      hand.addCard(itm);
+      this.getHand().addCard(itm);
     }
-    this.getHands().add(hand);
   }
 
   @PostConstruct
@@ -55,24 +52,22 @@ public class Player extends GameActor {
     _log.log(Level.INFO, "player created, his name is {0}", this.getName());
   }
 
-  public List<Hand> getHands() {
-    return hands;
+  public Hand getHand() {
+    return this.hand;
   }
 
-  protected void setHands(final List<Hand> _hands) {
-    this.hands = _hands;
+  protected void setHand(final Hand _hand) {
+    this.hand = _hand;
   }
 
   public String getAdvice(final Hand _dealerHand) throws StrategyException {
     String res = null;
-    res = this.getStrategy().getAdvice(this.getHands().get(0), _dealerHand, null).name();
+    res = this.getStrategy().getAdvice(this.getHand(), _dealerHand, null).name();
     return res;
   }
 
   public void play() throws StrategyException {
-    for (final Hand h : this.getHands()) {
-      this.getStrategy().getAdvice(h, null, null);
-    }
+    this.getStrategy().getAdvice(this.getHand(), null, null);
 
   }
 
