@@ -15,7 +15,6 @@ import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.swing.text.DateFormatter;
 
 /**
  *
@@ -64,7 +63,7 @@ public class GameManagedBean {
     try {
       res = this.getTable().getPlayer().getAdvice(this.getTable().getDealer().getHand());
     } catch (final StrategyException _e) {
-      _e.printStackTrace();
+      log.log(Level.SEVERE, "error on getting an advice", _e);
     }
     return res;
   }

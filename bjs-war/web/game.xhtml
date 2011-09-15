@@ -19,8 +19,8 @@
         <h:form>
 
           <p:panel header="table info">
-            <h:outputText value="total cards " />
-            <h:outputText value="" />
+            <h:outputText value="game is started: " />
+            <h:outputText value="#{game.gameStarted}" />
           </p:panel>
 
           <p:panel header="dealer: #{game.table.dealer.name}">
@@ -60,12 +60,15 @@
                   <h:outputText value="]" />
                 </p:column>
               </p:dataGrid>
+
               <p:commandButton value="stay" actionListener="#{game.table.player.stay}" update="msgs"/>
               <p:commandButton value="hit" actionListener="#{game.table.player.hit}" update="msgs"/> 
               <p:commandButton value="Advice" onclick="adviceDialog.show();" type="button"/>  
               <p:dialog header="Player advice" widgetVar="adviceDialog" modal="true" height="200">  
                 <h:outputText value="#{game.advice}" />  
               </p:dialog>
+              <h:outputText value="advice: " />
+              <h:outputText value="#{game.advice}" />
             </h:panelGrid>
           </p:panel>
 
