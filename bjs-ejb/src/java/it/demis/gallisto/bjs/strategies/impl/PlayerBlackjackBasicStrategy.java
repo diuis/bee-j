@@ -65,28 +65,48 @@ public class PlayerBlackjackBasicStrategy extends AbstractGameStrategy {
         if (handValue.isPair()) {
           final Integer idxLookup = handValue.getValue() / 2;
           final Integer idxArrayP = this.dataStrategy.getPlayerPairMapping().get(idxLookup);
-          final String[][] arr = this.dataStrategy.getPair();
-          final String adviceStr = arr[indexArrayD][idxArrayP];
-          res = this.resolveAdvice(adviceStr);
+          if (idxArrayP != null) {
+            final String[][] arr = this.dataStrategy.getPair();
+            final String adviceStr = arr[indexArrayD][idxArrayP];
+            res = this.resolveAdvice(adviceStr);
+          } else {
+            if (_log.isLoggable(Level.WARNING)) {
+              _log.log(Level.WARNING, "advice not available in strategy table [player hand={0}]", handValue);
+            }
+            res = Advice.NOT_AVAILABLE;
+          }
         } else {
           if (handValue.isSoft() && totUpCards == 2) {
             final int v1 = new BlackJackCardDecorator((FrenchCard) _playerHand.getUpCards().get(0)).getCalculatedValue();
             final int v2 = new BlackJackCardDecorator((FrenchCard) _playerHand.getUpCards().get(1)).getCalculatedValue();
             final Integer idxLookup = Math.max(v1, v2);
             final Integer idxArrayP = this.dataStrategy.getPlayerSoftMapping().get(idxLookup);
-            final String[][] arr = this.dataStrategy.getSoft();
-            final String adviceStr = arr[indexArrayD][idxArrayP];
-            res = this.resolveAdvice(adviceStr);
-
+            if (idxArrayP != null) {
+              final String[][] arr = this.dataStrategy.getSoft();
+              final String adviceStr = arr[indexArrayD][idxArrayP];
+              res = this.resolveAdvice(adviceStr);
+            } else {
+              if (_log.isLoggable(Level.WARNING)) {
+                _log.log(Level.WARNING, "advice not available in strategy table [player hand={0}]", handValue);
+              }
+              res = Advice.NOT_AVAILABLE;
+            }
           }
         }
         if (res == null) {
           // default or hard
           final Integer idxLookup = handValue.getValue();
           final Integer idxArrayP = this.dataStrategy.getPlayerHardMapping().get(idxLookup);
-          final String[][] arr = this.dataStrategy.getSoft();
-          final String adviceStr = arr[indexArrayD][idxArrayP];
-          res = this.resolveAdvice(adviceStr);
+          if (idxArrayP != null) {
+            final String[][] arr = this.dataStrategy.getSoft();
+            final String adviceStr = arr[indexArrayD][idxArrayP];
+            res = this.resolveAdvice(adviceStr);
+          } else {
+            if (_log.isLoggable(Level.WARNING)) {
+              _log.log(Level.WARNING, "advice not available in strategy table [player hand={0}]", handValue);
+            }
+            res = Advice.NOT_AVAILABLE;
+          }
         }
 
       } else {

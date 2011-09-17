@@ -5,7 +5,6 @@
 package it.demis.gallisto.bjs.strategies.impl;
 
 import it.demis.gallisto.bjs.model.Hand;
-import it.demis.gallisto.bjs.model.actors.Memory;
 import it.demis.gallisto.bjs.model.cards.Facing;
 import it.demis.gallisto.bjs.model.cards.FrenchCard;
 import it.demis.gallisto.bjs.model.cards.FrenchSuit;
@@ -30,21 +29,9 @@ public class DealerGameStrategyTest {
     super();
   }
 
-  @BeforeClass
-  public static void setUpClass() throws Exception {
-  }
-
-  @AfterClass
-  public static void tearDownClass() throws Exception {
-  }
-
   @Before
   public void setUp() {
     this.strategy = new DealerBlackjackGameStrategy();
-  }
-
-  @After
-  public void tearDown() {
   }
 
   @Test

@@ -26,6 +26,10 @@ public class Hand {
       super();
     }
 
+    public String toString() {
+      return "HandValue{" + "value=" + value + ", soft=" + soft + ", pair=" + pair + '}';
+    }
+
     public boolean isSoft() {
       return soft;
     }

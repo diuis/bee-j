@@ -10,5 +10,5 @@ package it.demis.gallisto.bjs.strategies;
  */
 public enum Advice {
 
-  HIT, STAY, SURRENDER, DOUBLE_DOWN, SPLIT;
+  HIT, STAY, SURRENDER, DOUBLE_DOWN, SPLIT, NOT_AVAILABLE;
 }
