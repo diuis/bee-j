@@ -49,11 +49,9 @@ public class PlayerBlackjackBasicStrategyTest {
     card = new FrenchCard("2", FrenchSuit.CLUBS.name());
     card.setFacing(Facing.DOWN);
     dHand.addCard(card);
-
     card = new FrenchCard("3", FrenchSuit.CLUBS.name());
     card.setFacing(Facing.UP);
     dHand.addCard(card);
-
     pHand = new Hand();
     card = new FrenchCard("3", FrenchSuit.DIAMOND.name());
     card.setFacing(Facing.UP);
@@ -67,11 +65,9 @@ public class PlayerBlackjackBasicStrategyTest {
     card = new FrenchCard("2", FrenchSuit.CLUBS.name());
     card.setFacing(Facing.DOWN);
     dHand.addCard(card);
-
     card = new FrenchCard("3", FrenchSuit.CLUBS.name());
     card.setFacing(Facing.UP);
     dHand.addCard(card);
-
     pHand = new Hand();
     card = new FrenchCard("4", FrenchSuit.DIAMOND.name());
     card.setFacing(Facing.UP);
@@ -85,11 +81,9 @@ public class PlayerBlackjackBasicStrategyTest {
     card = new FrenchCard("2", FrenchSuit.CLUBS.name());
     card.setFacing(Facing.DOWN);
     dHand.addCard(card);
-
     card = new FrenchCard("3", FrenchSuit.CLUBS.name());
     card.setFacing(Facing.UP);
     dHand.addCard(card);
-
     pHand = new Hand();
     card = new FrenchCard("6", FrenchSuit.DIAMOND.name());
     card.setFacing(Facing.UP);
@@ -103,22 +97,17 @@ public class PlayerBlackjackBasicStrategyTest {
     card = new FrenchCard("2", FrenchSuit.CLUBS.name());
     card.setFacing(Facing.DOWN);
     dHand.addCard(card);
-
     card = new FrenchCard("9", FrenchSuit.CLUBS.name());
     card.setFacing(Facing.UP);
     dHand.addCard(card);
-
+    
     pHand = new Hand();
     card = new FrenchCard("10", FrenchSuit.DIAMOND.name());
     card.setFacing(Facing.UP);
     pHand.addCard(card);
-
-    pHand = new Hand();
     card = new FrenchCard("2", FrenchSuit.DIAMOND.name());
     card.setFacing(Facing.UP);
     pHand.addCard(card);
-
-    pHand = new Hand();
     card = new FrenchCard("4", FrenchSuit.DIAMOND.name());
     card.setFacing(Facing.UP);
     pHand.addCard(card);
