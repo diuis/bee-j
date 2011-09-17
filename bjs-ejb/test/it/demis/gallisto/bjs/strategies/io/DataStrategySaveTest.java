@@ -22,7 +22,7 @@ public class DataStrategySaveTest {
 
   @Before
   public void setUp() {
-    System.setProperty("bjs.datastrategy.load.filename", "/opt/develop/data_bj_basicstrategy.xml");
+    System.setProperty("bjs.datastrategy.save.filename", "/opt/develop/data_bj_basicstrategy.xml");
   }
 
   @Test

@@ -9,7 +9,6 @@ import it.demis.gallisto.bjs.model.cards.FrenchSuit;
 import it.demis.gallisto.bjs.model.cards.FrenchCard;
 import it.demis.gallisto.bjs.strategies.GameStrategy;
 import it.demis.gallisto.bjs.model.Hand;
-import it.demis.gallisto.bjs.model.actors.Memory;
 import it.demis.gallisto.bjs.strategies.Advice;
 import org.junit.After;
 import org.junit.Before;
@@ -30,6 +29,7 @@ public class PlayerBlackjackBasicStrategyTest {
 
   @Before
   public void setUp() {
+    System.setProperty("bjs.datastrategy.load.filename", "/opt/develop/data_bj_basicstrategy.xml");
     this.strategy = new PlayerBlackjackBasicStrategy();
   }
 
