@@ -16,9 +16,9 @@ import java.util.logging.Level;
  * @author Demis Gallisto
  */
 @DealerQualifier
-public class DealerGameStrategy extends AbstractGameStrategy {
+public class DealerBlackjackGameStrategy extends AbstractGameStrategy {
 
-  public DealerGameStrategy() {
+  public DealerBlackjackGameStrategy() {
     super();
   }
 

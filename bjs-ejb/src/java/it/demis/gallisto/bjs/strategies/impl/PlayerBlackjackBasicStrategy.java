@@ -22,11 +22,11 @@ import java.util.logging.Level;
  * @author Demis Gallisto
  */
 @PlayerQualifier
-public class BlackjackBasicStrategy extends AbstractGameStrategy {
+public class PlayerBlackjackBasicStrategy extends AbstractGameStrategy {
 
   private volatile DataStrategy dataStrategy;
 
-  public BlackjackBasicStrategy() {
+  public PlayerBlackjackBasicStrategy() {
     super();
   }
 

@@ -40,7 +40,7 @@ public class DealerGameStrategyTest {
 
   @Before
   public void setUp() {
-    this.strategy = new DealerGameStrategy();
+    this.strategy = new DealerBlackjackGameStrategy();
   }
 
   @After
@@ -54,8 +54,6 @@ public class DealerGameStrategyTest {
     FrenchCard card = null;
     Advice result = null;
 
-    // hit
-    
     dHand = new Hand();
     card = new FrenchCard("2", FrenchSuit.CLUBS.name());
     card.setFacing(Facing.UP);
@@ -68,7 +66,6 @@ public class DealerGameStrategyTest {
     result = this.strategy.getAdvice(null, dHand, null);
     assertEquals(Advice.HIT, result);
 
-    // stay
 
     dHand = new Hand();
     card = new FrenchCard("9", FrenchSuit.CLUBS.name());
@@ -82,7 +79,6 @@ public class DealerGameStrategyTest {
     result = this.strategy.getAdvice(null, dHand, null);
     assertEquals(Advice.STAY, result);
 
-    // stay
     
     dHand = new Hand();
     card = new FrenchCard("9", FrenchSuit.CLUBS.name());
@@ -96,7 +92,6 @@ public class DealerGameStrategyTest {
     result = this.strategy.getAdvice(null, dHand, null);
     assertEquals(Advice.STAY, result);
 
-    // hit
     
     dHand = new Hand();
     card = new FrenchCard("2", FrenchSuit.CLUBS.name());
@@ -114,7 +109,6 @@ public class DealerGameStrategyTest {
     result = this.strategy.getAdvice(null, dHand, null);
     assertEquals(Advice.HIT, result);
 
-    // hit
     
     dHand = new Hand();
     card = new FrenchCard("1", FrenchSuit.CLUBS.name());
@@ -132,7 +126,6 @@ public class DealerGameStrategyTest {
     result = this.strategy.getAdvice(null, dHand, null);
     assertEquals(Advice.HIT, result);
     
-    // hit
     
     dHand = new Hand();
     card = new FrenchCard("1", FrenchSuit.CLUBS.name());
