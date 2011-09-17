@@ -8,11 +8,11 @@
     <p:panel header="new Blackjack strategy game" footer="author: Demis Gallisto">
 
       <h:form>
-        <h:outputText value="start a new game" />
         <p:separator/>
-        <h:panelGrid columns="3">
-          <p:commandButton value="start" actionListener="#{game.newGame}" update="msgs"/> 
+        <h:panelGrid columns="1" style="margin-left: auto; margin-right: auto;">
+          <p:commandButton value="start a new game" actionListener="#{game.newGame}" update="msgs" /> 
         </h:panelGrid>
+        <p:separator/>
       </h:form>
 
       <p:panel id="msgs" header="Table game">
@@ -25,8 +25,6 @@
 
           <p:panel header="dealer: #{game.table.dealer.name}">
             <h:panelGrid columns="2" rendered="#{game.gameStarted}">
-              <h:outputText value="name " />
-              <h:outputText value="#{game.table.dealer.name}" />
               <h:outputText value="strategy " />
               <h:outputText value="#{game.table.dealer.strategy.name}" />
               <h:outputText value="hand " />
@@ -45,9 +43,7 @@
           </p:panel>
 
           <p:panel header="player: #{game.table.player.name}">  
-            <h:panelGrid columns="2" >  
-              <h:outputText value="name " /> 
-              <h:outputText value="#{game.table.player.name}" />
+            <h:panelGrid columns="2" rendered="#{game.gameStarted}">  
               <h:outputText value="strategy " /> 
               <h:outputText value="#{game.table.player.strategy.name}" />
               <h:outputText value="hands " />
@@ -61,12 +57,9 @@
                 </p:column>
               </p:dataGrid>
 
-              <p:commandButton value="stay" actionListener="#{game.table.player.stay}" update="msgs"/>
-              <p:commandButton value="hit" actionListener="#{game.table.player.hit}" update="msgs"/> 
-              <p:commandButton value="Advice" onclick="adviceDialog.show();" type="button"/>  
-              <p:dialog header="Player advice" widgetVar="adviceDialog" modal="true" height="200">  
-                <h:outputText value="#{game.advice}" />  
-              </p:dialog>
+              <p:commandButton value="stay" actionListener="#{game.playerStay}" update="msgs"/>
+              <p:commandButton value="hit" actionListener="#{game.playerHit}" update="msgs"/>
+
               <h:outputText value="advice: " />
               <h:outputText value="#{game.advice}" />
             </h:panelGrid>

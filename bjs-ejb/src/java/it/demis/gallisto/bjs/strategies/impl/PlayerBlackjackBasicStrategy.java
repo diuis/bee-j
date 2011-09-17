@@ -139,7 +139,10 @@ public class PlayerBlackjackBasicStrategy extends AbstractGameStrategy {
         res = Advice.SURRENDER;
         break;
       case "dh":
-        res = Advice.DOUBLE_DOWN;
+        res = Advice.DOUBLE_HIT;
+        break;
+      case "ds":
+        res = Advice.DOUBLE_STAY;
         break;
       case "sp":
         res = Advice.SPLIT;

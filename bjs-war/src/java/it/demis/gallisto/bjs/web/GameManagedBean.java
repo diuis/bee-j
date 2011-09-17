@@ -58,12 +58,28 @@ public class GameManagedBean {
     super();
   }
 
+  public void playerStay() {
+    if (this.log.isLoggable(Level.INFO)) {
+      log.info("player stay");
+    }
+  }
+  
+  public void playerHit() {
+     if (this.log.isLoggable(Level.INFO)) {
+      log.info("player hit");
+    }
+  }
+  
   public String getAdvice() {
     String res = null;
-    try {
-      res = this.getTable().getPlayer().getAdvice(this.getTable().getDealer().getHand());
-    } catch (final StrategyException _e) {
-      log.log(Level.SEVERE, "error on getting an advice", _e);
+    if (this.isGameStarted()) {
+      try {
+        res = this.getTable().getPlayer().getAdvice(this.getTable().getDealer().getHand());
+      } catch (final StrategyException _e) {
+        log.log(Level.SEVERE, "error on getting an advice", _e);
+      }
+    } else {
+      res = "start the game for advice";
     }
     return res;
   }
@@ -74,7 +90,7 @@ public class GameManagedBean {
 
     log.log(Level.INFO, " new blackjack start date: {0}", DateFormat.getDateTimeInstance().format(this.getStartDate()));
     this.table.getPlayer().initHand(this.getTable().getDealer().getCardsForPlayer());
-    
+
     log.info(" --- ");
     log.log(Level.INFO, " dealer name: {0}", this.table.getDealer().getName());
     for (final PlayingCard card : this.table.getDealer().getHand().getAllCards()) {
