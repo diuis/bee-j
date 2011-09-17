@@ -80,7 +80,6 @@ public class DataStrategySave extends DataStrategyIO {
         {"st", "st", "st", "st", "st", "st", "st", "st", "st", "st"},
         {"sp", "sp", "sp", "sp", "sp", "sp", "sp", "sp", "sp", "sp"}};
 
-      /**
       ds.setHard(hard);
       ds.setSoft(soft);
       ds.setPair(pair);
@@ -95,7 +94,6 @@ public class DataStrategySave extends DataStrategyIO {
       ds.getDealerMapping().put(9, 7);
       ds.getDealerMapping().put(10, 8);
       ds.getDealerMapping().put(1, 9);
-*/
       
       ds.getPlayerHardMapping().put(5, 0);
       ds.getPlayerHardMapping().put(6, 0);
@@ -113,15 +111,15 @@ public class DataStrategySave extends DataStrategyIO {
       ds.getPlayerHardMapping().put(18, 8);
       ds.getPlayerHardMapping().put(19, 8);
       ds.getPlayerHardMapping().put(20, 8);
-/*
+
       ds.getPlayerSoftMapping().put(2, 0);
       ds.getPlayerSoftMapping().put(3, 0);
-      ds.getPlayerSoftMapping().put(3, 1);
+      ds.getPlayerSoftMapping().put(4, 1);
       ds.getPlayerSoftMapping().put(5, 1);
       ds.getPlayerSoftMapping().put(6, 2);
-      ds.getPlayerSoftMapping().put(7, 4);
-      ds.getPlayerSoftMapping().put(8, 5);
-      ds.getPlayerSoftMapping().put(9, 5);
+      ds.getPlayerSoftMapping().put(7, 3);
+      ds.getPlayerSoftMapping().put(8, 4);
+      ds.getPlayerSoftMapping().put(9, 4);
 
       ds.getPlayerPairMapping().put(2, 0);
       ds.getPlayerPairMapping().put(3, 0);
@@ -133,7 +131,7 @@ public class DataStrategySave extends DataStrategyIO {
       ds.getPlayerPairMapping().put(9, 6);
       ds.getPlayerPairMapping().put(10, 7);
       ds.getPlayerPairMapping().put(1, 8);
-**/
+
       synchronized (this.marshaller) {
         this.marshaller.marshal(ds, new FileOutputStream(this.getFileName()));
       }

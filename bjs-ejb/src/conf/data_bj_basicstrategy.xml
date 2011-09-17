@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ns2:dataStrategy xmlns:ns2="http://demis.gallisto.it/bjs">
-  <!--
     <dealerMapping>
         <entry key="1">9</entry>
         <entry key="2">0</entry>
@@ -13,7 +12,6 @@
         <entry key="9">7</entry>
         <entry key="10">8</entry>
     </dealerMapping>
-  -->
     <hard>
         <item>hi</item>
         <item>hi</item>
@@ -180,28 +178,7 @@
         <item>hi</item>
         <item>hi</item>
         <item>hi</item>
-        <item>hi</item>Sep 17, 2011 3:37:33 PM it.demis.gallisto.bjs.strategies.io.XmlMapTypeAdapter unmarshal
-INFO: adapted from xml XmlMapTypeEntry{key=1, val=9}
-Sep 17, 2011 3:37:33 PM it.demis.gallisto.bjs.strategies.io.XmlMapTypeAdapter unmarshal
-INFO: adapted from xml XmlMapTypeEntry{key=2, val=0}
-Sep 17, 2011 3:37:33 PM it.demis.gallisto.bjs.strategies.io.XmlMapTypeAdapter unmarshal
-INFO: adapted from xml XmlMapTypeEntry{key=3, val=1}
-Sep 17, 2011 3:37:33 PM it.demis.gallisto.bjs.strategies.io.XmlMapTypeAdapter unmarshal
-INFO: adapted from xml XmlMapTypeEntry{key=4, val=2}
-Sep 17, 2011 3:37:33 PM it.demis.gallisto.bjs.strategies.io.XmlMapTypeAdapter unmarshal
-INFO: adapted from xml XmlMapTypeEntry{key=5, val=3}
-Sep 17, 2011 3:37:33 PM it.demis.gallisto.bjs.strategies.io.XmlMapTypeAdapter unmarshal
-INFO: adapted from xml XmlMapTypeEntry{key=6, val=4}
-Sep 17, 2011 3:37:33 PM it.demis.gallisto.bjs.strategies.io.XmlMapTypeAdapter unmarshal
-INFO: adapted from xml XmlMapTypeEntry{key=7, val=5}
-Sep 17, 2011 3:37:33 PM it.demis.gallisto.bjs.strategies.io.XmlMapTypeAdapter unmarshal
-INFO: adapted from xml XmlMapTypeEntry{key=8, val=6}
-Sep 17, 2011 3:37:33 PM it.demis.gallisto.bjs.strategies.io.XmlMapTypeAdapter unmarshal
-INFO: adapted from xml XmlMapTypeEntry{key=9, val=7}
-Sep 17, 2011 3:37:33 PM it.demis.gallisto.bjs.strategies.io.XmlMapTypeAdapter unmarshal
-INFO: adapted from xml XmlMapTypeEntry{key=10, val=8}
-Sep 17, 2011 3:37:33 PM it.demis.gallisto.bjs.strategies.io.DataStrategyLoad load
-INFO: configuration file loaded: /META-INF/data_bj_basicstrategy.xml
+        <item>hi</item>
     </pair>
     <pair>
         <item>sp</item>
@@ -251,7 +228,7 @@ INFO: configuration file loaded: /META-INF/data_bj_basicstrategy.xml
         <item>sp</item>
         <item>sp</item>
     </pair>
-    <plHardMapping>
+    <playerHardMapping>
         <entry key="5">0</entry>
         <entry key="6">0</entry>
         <entry key="7">0</entry>
@@ -268,8 +245,8 @@ INFO: configuration file loaded: /META-INF/data_bj_basicstrategy.xml
         <entry key="19">8</entry>
         <entry key="18">8</entry>
         <entry key="20">8</entry>
-    </plHardMapping>
-    <plPairMapping>
+    </playerHardMapping>
+    <playerPairMapping>
         <entry key="1">8</entry>
         <entry key="2">0</entry>
         <entry key="3">0</entry>
@@ -280,16 +257,17 @@ INFO: configuration file loaded: /META-INF/data_bj_basicstrategy.xml
         <entry key="8">5</entry>
         <entry key="9">6</entry>
         <entry key="10">7</entry>
-    </plPairMapping>
-    <plSoftMapping>
+    </playerPairMapping>
+    <playerSoftMapping>
         <entry key="2">0</entry>
-        <entry key="3">1</entry>
+        <entry key="3">0</entry>
+        <entry key="4">1</entry>
         <entry key="5">1</entry>
         <entry key="6">2</entry>
-        <entry key="7">4</entry>
-        <entry key="8">5</entry>
-        <entry key="9">5</entry>
-    </plSoftMapping>
+        <entry key="7">3</entry>
+        <entry key="8">4</entry>
+        <entry key="9">4</entry>
+    </playerSoftMapping>
     <soft>
         <item>hi</item>
         <item>hi</item>
