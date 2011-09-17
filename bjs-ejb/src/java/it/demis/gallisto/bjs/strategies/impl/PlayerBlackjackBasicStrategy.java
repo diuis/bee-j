@@ -56,7 +56,7 @@ public class PlayerBlackjackBasicStrategy extends AbstractGameStrategy {
 
       final int dealerHandCalculatedValue = new BlackJackCardDecorator((FrenchCard) dealerCard).getCalculatedValue();
 
-      final Integer indexArrayD = this.dataStrategy.getDealerMapping().get(dealerHandCalculatedValue);
+      final Integer idxArrayD = this.dataStrategy.getDealerMapping().get(dealerHandCalculatedValue);
 
       final int totUpCards = _playerHand.totalUpCards();
       if (totUpCards > 0) {
@@ -67,7 +67,7 @@ public class PlayerBlackjackBasicStrategy extends AbstractGameStrategy {
           final Integer idxArrayP = this.dataStrategy.getPlayerPairMapping().get(idxLookup);
           if (idxArrayP != null) {
             final String[][] arr = this.dataStrategy.getPair();
-            final String adviceStr = arr[indexArrayD][idxArrayP];
+            final String adviceStr = arr[idxArrayP][idxArrayD];
             res = this.resolveAdvice(adviceStr);
           } else {
             if (_log.isLoggable(Level.WARNING)) {
@@ -83,7 +83,7 @@ public class PlayerBlackjackBasicStrategy extends AbstractGameStrategy {
             final Integer idxArrayP = this.dataStrategy.getPlayerSoftMapping().get(idxLookup);
             if (idxArrayP != null) {
               final String[][] arr = this.dataStrategy.getSoft();
-              final String adviceStr = arr[indexArrayD][idxArrayP];
+              final String adviceStr = arr[idxArrayP][idxArrayD];
               res = this.resolveAdvice(adviceStr);
             } else {
               if (_log.isLoggable(Level.WARNING)) {
@@ -98,8 +98,8 @@ public class PlayerBlackjackBasicStrategy extends AbstractGameStrategy {
           final Integer idxLookup = handValue.getValue();
           final Integer idxArrayP = this.dataStrategy.getPlayerHardMapping().get(idxLookup);
           if (idxArrayP != null) {
-            final String[][] arr = this.dataStrategy.getSoft();
-            final String adviceStr = arr[indexArrayD][idxArrayP];
+            final String[][] arr = this.dataStrategy.getHard();
+            final String adviceStr = arr[idxArrayP][idxArrayD];
             res = this.resolveAdvice(adviceStr);
           } else {
             if (_log.isLoggable(Level.WARNING)) {
