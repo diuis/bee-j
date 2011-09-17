@@ -57,6 +57,9 @@ public class Hand {
   private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
   private List<PlayingCard> cards = new ArrayList<>();
 
+  /**
+   * This method is thread-safe
+   */
   public List<PlayingCard> getAllCards() {
     List<PlayingCard> res = null;
     try {
@@ -68,6 +71,9 @@ public class Hand {
     return res;
   }
 
+  /**
+   * This method is thread-safe
+   */
   public List<PlayingCard> getUpCards() {
     List<PlayingCard> res = null;
     try {
@@ -88,6 +94,9 @@ public class Hand {
     return res;
   }
 
+  /**
+   * This method is thread-safe
+   */
   public PlayingCard getFirstUpCard() {
     PlayingCard res = null;
     try {
@@ -102,6 +111,9 @@ public class Hand {
     return res;
   }
 
+  /**
+   * This method is thread-safe
+   */
   protected void setCards(final List<PlayingCard> _cards) {
     try {
       this.lock.writeLock().lock();
@@ -111,6 +123,9 @@ public class Hand {
     }
   }
 
+  /**
+   * This method is thread-safe
+   */
   public void addCard(final PlayingCard _card) {
     if (_card == null) {
       throw new IllegalArgumentException("not valid parameter card: is null");
@@ -123,6 +138,9 @@ public class Hand {
     }
   }
 
+  /**
+   * This method is thread-safe
+   */
   public int totalAllCards() {
     int res = 0;
     try {
@@ -134,6 +152,9 @@ public class Hand {
     return res;
   }
 
+  /**
+   * This method is thread-safe
+   */
   public int totalUpCards() {
     int res = 0;
     try {
@@ -171,6 +192,9 @@ public class Hand {
     return res;
   }
 
+  /**
+   * This method is thread-safe
+   */
   public HandValue getValueOfUpCards() {
     HandValue res = new HandValue();
     boolean acePresent = false;
@@ -212,6 +236,9 @@ public class Hand {
     return res;
   }
 
+  /**
+   * This method is thread-safe
+   */
   public HandValue getValueOfAllCards() {
     HandValue res = new HandValue();
     boolean acePresent = false;
@@ -253,6 +280,9 @@ public class Hand {
     return res;
   }
 
+  /**
+   * This method is thread-safe
+   */
   public boolean isAcePresentOnAllCards() {
     boolean res = false;
     try {
@@ -272,6 +302,9 @@ public class Hand {
     return res;
   }
 
+  /**
+   * This method is thread-safe
+   */
   public boolean isAcePresentOnUpCards() {
     boolean res = false;
     try {
