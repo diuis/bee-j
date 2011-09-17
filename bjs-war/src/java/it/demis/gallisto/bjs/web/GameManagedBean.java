@@ -73,18 +73,25 @@ public class GameManagedBean {
     this.setStartDate(new Date());
 
     log.log(Level.INFO, " new blackjack start date: {0}", DateFormat.getDateTimeInstance().format(this.getStartDate()));
+    this.table.getPlayer().initHand(this.getTable().getDealer().getCardsForPlayer());
+    
     log.info(" --- ");
     log.log(Level.INFO, " dealer name: {0}", this.table.getDealer().getName());
+    for (final PlayingCard card : this.table.getDealer().getHand().getAllCards()) {
+      log.log(Level.INFO, " dealer (all) card: {0}", card);
+    }
     for (final PlayingCard card : this.table.getDealer().getHand().getUpCards()) {
-      log.log(Level.INFO, " dealer up card: {0}", card);
+      log.log(Level.INFO, " dealer (up) card: {0}", card);
     }
     log.log(Level.INFO, " dealer game strategy: {0}", this.table.getDealer().getStrategy());
     log.info(" --- ");
     log.log(Level.INFO, " player name: {0}", this.table.getPlayer().getName());
+    for (final PlayingCard card : this.table.getPlayer().getHand().getUpCards()) {
+      log.log(Level.INFO, " player up card: {0}", card);
+    }
     log.log(Level.INFO, " player game strategy: {0}", this.table.getPlayer().getStrategy());
 
 
-    this.table.getPlayer().initHand(this.getTable().getDealer().getCardsForPlayer());
     this.setGameStarted(true);
     log.info("...game started!");
   }
