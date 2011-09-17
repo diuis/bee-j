@@ -5,6 +5,8 @@
 package it.demis.gallisto.bjs.strategies.io;
 
 import it.demis.gallisto.bjs.utils.Cache;
+import java.io.File;
+import java.io.InputStream;
 import java.util.logging.Level;
 import javax.inject.Singleton;
 import javax.xml.bind.JAXBContext;
@@ -47,28 +49,51 @@ public class DataStrategyLoad extends DataStrategyIO {
 
     DataStrategy res = null;
 
-    try {
-      synchronized (this.unmarshaller) {
-        DataStrategy dataCached = null;
-        if (this.cache != null) {
-          dataCached = this.cache.get(this.getClass().getName());
-        }
-        if (dataCached == null) {
-          res = (DataStrategy) this.unmarshaller.unmarshal(this.getClass().getResourceAsStream(this.getFileName()));
-          if (res != null && this.cache != null) {
-            this.cache.put(this.getClass().getName(), res);
-          }
-        } else {
-          res = dataCached;
-        }
-      }
-      if (_log.isLoggable(Level.INFO)) {
-        this._log.log(Level.INFO, "configuration file loaded: {0}", this.getFileName());
-      }
-    } catch (final JAXBException _e) {
-      throw new DataStrategyIOException(_e);
+    final String fName = this.getFileName();
+    if (fName == null || fName.isEmpty()) {
+      throw new DataStrategyIOException("not valid filename for strategy data");
     }
 
+    final File file = new File(fName);
+    if (file.isFile()) {
+      InputStream is = null;
+      try {
+        synchronized (this.unmarshaller) {
+          DataStrategy dataCached = null;
+          if (this.cache != null) {
+            dataCached = this.cache.get(fName);
+          }
+          if (dataCached == null) {
+            is = this.getClass().getResourceAsStream(fName);
+            if (is != null) {
+              res = (DataStrategy) this.unmarshaller.unmarshal(this.getClass().getResourceAsStream(fName));
+            } else {
+              res = (DataStrategy) this.unmarshaller.unmarshal(file);
+            }
+            if (res != null && this.cache != null) {
+              this.cache.put(fName, res);
+            }
+          } else {
+            res = dataCached;
+          }
+        }
+        if (_log.isLoggable(Level.INFO)) {
+          this._log.log(Level.INFO, "configuration file loaded: {0}", fName);
+        }
+      } catch (final JAXBException | IllegalArgumentException _e) {
+        throw new DataStrategyIOException(_e);
+      } finally {
+        if (is != null) {
+          try {
+            is.close();
+          } catch (final Exception _e) {
+            _log.log(Level.WARNING, "exception closing data file inputstream", _e);
+          }
+        }
+      }
+    } else {
+      throw new DataStrategyIOException("not valid file: " + file.getAbsolutePath());
+    }
     return res;
   }
 }

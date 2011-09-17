@@ -28,6 +28,10 @@ public class XmlMapTypeEntry {
     this.setVal(_val);
   }
 
+  public String toString() {
+    return "XmlMapTypeEntry{" + "key=" + key + ", val=" + val + '}';
+  }
+
   @XmlAttribute
   public Integer getKey() {
     return this.key;

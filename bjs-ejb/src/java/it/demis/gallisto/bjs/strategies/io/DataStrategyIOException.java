@@ -13,4 +13,8 @@ public class DataStrategyIOException extends Exception {
   public DataStrategyIOException(final Throwable _e) {
     super(_e);
   }
+
+  public DataStrategyIOException(final String _message) {
+    super(_message);
+  }
 }

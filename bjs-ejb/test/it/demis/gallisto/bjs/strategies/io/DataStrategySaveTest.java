@@ -6,11 +6,8 @@ package it.demis.gallisto.bjs.strategies.io;
 
 import java.io.File;
 
-import org.junit.After;
-import org.junit.AfterClass;
 import static org.junit.Assert.*;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -20,35 +17,19 @@ import org.junit.Test;
 public class DataStrategySaveTest {
 
   public DataStrategySaveTest() {
-  }
-
-  @BeforeClass
-  public static void setUpClass() throws Exception {
-  }
-
-  @AfterClass
-  public static void tearDownClass() throws Exception {
+    super();
   }
 
   @Before
   public void setUp() {
+    System.setProperty("bjs.datastrategy.load.filename", "/opt/develop/data_bj_basicstrategy.xml");
   }
 
-  @After
-  public void tearDown() {
-  }
-
-  /**
-   * Test of getInstance method, of class DataStrategySave.
-   */
   @Test
   public void testGetInstance() {
     assertEquals(DataStrategySave.getInstance(), DataStrategySave.getInstance());
   }
 
-  /**
-   * Test of save method, of class DataStrategySave.
-   */
   @Test
   public void testSave() throws Exception {
     final DataStrategySave dss = DataStrategySave.getInstance();

@@ -10,10 +10,7 @@ import it.demis.gallisto.bjs.model.cards.FrenchCard;
 import it.demis.gallisto.bjs.model.cards.FrenchSuit;
 import it.demis.gallisto.bjs.strategies.Advice;
 import it.demis.gallisto.bjs.strategies.GameStrategy;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

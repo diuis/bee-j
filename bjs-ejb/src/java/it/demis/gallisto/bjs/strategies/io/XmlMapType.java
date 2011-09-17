@@ -14,6 +14,11 @@ public class XmlMapType {
 
   private List<XmlMapTypeEntry> entry;
 
+  @Override
+  public String toString() {
+    return "XmlMapType{" + "entry=" + entry + '}';
+  }
+
   public List<XmlMapTypeEntry> getEntry() {
     return this.entry;
   }

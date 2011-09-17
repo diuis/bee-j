@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ns2:dataStrategy xmlns:ns2="http://demis.gallisto.it/bjs">
+  <!--
     <dealerMapping>
         <entry key="1">9</entry>
         <entry key="2">0</entry>
@@ -12,6 +13,7 @@
         <entry key="9">7</entry>
         <entry key="10">8</entry>
     </dealerMapping>
+  -->
     <hard>
         <item>hi</item>
         <item>hi</item>
@@ -178,7 +180,28 @@
         <item>hi</item>
         <item>hi</item>
         <item>hi</item>
-        <item>hi</item>
+        <item>hi</item>Sep 17, 2011 3:37:33 PM it.demis.gallisto.bjs.strategies.io.XmlMapTypeAdapter unmarshal
+INFO: adapted from xml XmlMapTypeEntry{key=1, val=9}
+Sep 17, 2011 3:37:33 PM it.demis.gallisto.bjs.strategies.io.XmlMapTypeAdapter unmarshal
+INFO: adapted from xml XmlMapTypeEntry{key=2, val=0}
+Sep 17, 2011 3:37:33 PM it.demis.gallisto.bjs.strategies.io.XmlMapTypeAdapter unmarshal
+INFO: adapted from xml XmlMapTypeEntry{key=3, val=1}
+Sep 17, 2011 3:37:33 PM it.demis.gallisto.bjs.strategies.io.XmlMapTypeAdapter unmarshal
+INFO: adapted from xml XmlMapTypeEntry{key=4, val=2}
+Sep 17, 2011 3:37:33 PM it.demis.gallisto.bjs.strategies.io.XmlMapTypeAdapter unmarshal
+INFO: adapted from xml XmlMapTypeEntry{key=5, val=3}
+Sep 17, 2011 3:37:33 PM it.demis.gallisto.bjs.strategies.io.XmlMapTypeAdapter unmarshal
+INFO: adapted from xml XmlMapTypeEntry{key=6, val=4}
+Sep 17, 2011 3:37:33 PM it.demis.gallisto.bjs.strategies.io.XmlMapTypeAdapter unmarshal
+INFO: adapted from xml XmlMapTypeEntry{key=7, val=5}
+Sep 17, 2011 3:37:33 PM it.demis.gallisto.bjs.strategies.io.XmlMapTypeAdapter unmarshal
+INFO: adapted from xml XmlMapTypeEntry{key=8, val=6}
+Sep 17, 2011 3:37:33 PM it.demis.gallisto.bjs.strategies.io.XmlMapTypeAdapter unmarshal
+INFO: adapted from xml XmlMapTypeEntry{key=9, val=7}
+Sep 17, 2011 3:37:33 PM it.demis.gallisto.bjs.strategies.io.XmlMapTypeAdapter unmarshal
+INFO: adapted from xml XmlMapTypeEntry{key=10, val=8}
+Sep 17, 2011 3:37:33 PM it.demis.gallisto.bjs.strategies.io.DataStrategyLoad load
+INFO: configuration file loaded: /META-INF/data_bj_basicstrategy.xml
     </pair>
     <pair>
         <item>sp</item>

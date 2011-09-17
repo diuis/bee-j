@@ -31,8 +31,8 @@ public class DataStrategy implements Serializable {
     return dealerMapping;
   }
 
-  public void setDealerMapping(Map<Integer, Integer> dealerMapping) {
-    this.dealerMapping = dealerMapping;
+  public void setDealerMapping(final Map<Integer, Integer> _dealerMapping) {
+    this.dealerMapping = _dealerMapping;
   }
 
   @XmlJavaTypeAdapter(XmlMapTypeAdapter.class)
@@ -40,7 +40,7 @@ public class DataStrategy implements Serializable {
     return this.plHardMapping;
   }
 
-  public void setPlayerHardMapping(final Map _plHardMapping) {
+  public void setPlayerHardMapping(final Map<Integer, Integer> _plHardMapping) {
     this.plHardMapping = _plHardMapping;
   }
 
@@ -49,7 +49,7 @@ public class DataStrategy implements Serializable {
     return this.plPairMapping;
   }
 
-  public void setPlayerPairMapping(final Map _plPairMapping) {
+  public void setPlayerPairMapping(final Map<Integer, Integer> _plPairMapping) {
     this.plPairMapping = _plPairMapping;
   }
 
@@ -58,7 +58,7 @@ public class DataStrategy implements Serializable {
     return this.plSoftMapping;
   }
 
-  public void setPlayerSoftMapping(final Map _plSoftMapping) {
+  public void setPlayerSoftMapping(final Map<Integer, Integer> _plSoftMapping) {
     this.plSoftMapping = _plSoftMapping;
   }
 

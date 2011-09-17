@@ -7,6 +7,8 @@ package it.demis.gallisto.bjs.strategies.io;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 /**
@@ -14,6 +16,8 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
  * @author Demis Gallisto
  */
 public class XmlMapTypeAdapter extends XmlAdapter<XmlMapType, Map<Integer, Integer>> {
+
+  private final Logger _log = Logger.getLogger(this.getClass().getName());
 
   @Override
   public Map unmarshal(final XmlMapType _xmlMapType) throws Exception {
@@ -24,6 +28,9 @@ public class XmlMapTypeAdapter extends XmlAdapter<XmlMapType, Map<Integer, Integ
         for (final XmlMapTypeEntry entry : _xmlMapType.getEntry()) {
           if (entry != null) {
             res.put(entry.getKey(), entry.getVal());
+            if (_log.isLoggable(Level.FINEST)) {
+              _log.log(Level.FINEST, "adapted from xml {0}", entry);
+            }
           }
         }
       }
@@ -39,7 +46,11 @@ public class XmlMapTypeAdapter extends XmlAdapter<XmlMapType, Map<Integer, Integ
       if (_map.size() > 0) {
         res.setEntry(new LinkedList<XmlMapTypeEntry>());
         for (final Integer key : _map.keySet()) {
-          res.getEntry().add(new XmlMapTypeEntry(key, _map.get(key)));
+          final XmlMapTypeEntry entry = new XmlMapTypeEntry(key, _map.get(key));
+          res.getEntry().add(entry);
+          if (_log.isLoggable(Level.FINEST)) {
+              _log.log(Level.FINEST, "adapted for xml {0}", entry);
+            }
         }
       }
     }

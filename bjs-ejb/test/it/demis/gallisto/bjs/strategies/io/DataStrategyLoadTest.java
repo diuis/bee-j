@@ -6,10 +6,8 @@ package it.demis.gallisto.bjs.strategies.io;
 
 
 import org.junit.After;
-import org.junit.AfterClass;
 import static org.junit.Assert.*;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -19,39 +17,35 @@ import org.junit.Test;
 public class DataStrategyLoadTest {
   
   public DataStrategyLoadTest() {
+    super();
   }
 
-  @BeforeClass
-  public static void setUpClass() throws Exception {
-  }
-
-  @AfterClass
-  public static void tearDownClass() throws Exception {
-  }
-  
   @Before
   public void setUp() {
+    System.setProperty("bjs.datastrategy.load.filename", "/opt/develop/data_bj_basicstrategy.xml");
   }
   
   @After
   public void tearDown() {
   }
 
-  /**
-   * Test of getInstance method, of class DataStrategyLoad.
-   */
   @Test
   public void testGetInstance() {
     assertEquals(DataStrategyLoad.getInstance(), DataStrategyLoad.getInstance());
   }
 
-  /**
-   * Test of load method, of class DataStrategyLoad.
-   */
   @Test
   public void testLoad() throws Exception {
     DataStrategy result = DataStrategyLoad.getInstance().load();
     assertNotNull(result);
+    
+    assertNull(result.getPlayerHardMapping().get(1));
+    assertNull(result.getPlayerHardMapping().get(2));
+    assertNull(result.getPlayerHardMapping().get(3));
+    assertNull(result.getPlayerHardMapping().get(4));
+    assertNull(result.getPlayerHardMapping().get(21));
+    
+    assertEquals(new Integer(0), result.getPlayerHardMapping().get(5));
   }
 
 }
