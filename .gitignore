@@ -7,3 +7,6 @@
 /build/
 /dist/
 /nbproject/private/
+/bjs-core/nbproject/private/
+/bjs-core/dist/
+/bjs-core/build/

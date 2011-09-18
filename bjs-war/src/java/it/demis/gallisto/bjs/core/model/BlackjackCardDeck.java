@@ -23,7 +23,7 @@ import javax.inject.Inject;
  *
  * @author Demis Gallisto
  */
-@ManagedBean
+@BlackjackCardDeckQualifier
 public class BlackjackCardDeck implements CardDeck {
 
   private List<PlayingCard> availabCards = new ArrayList<>(52);

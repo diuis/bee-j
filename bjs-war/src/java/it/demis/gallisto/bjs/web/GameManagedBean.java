@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
+import javax.inject.Inject;
 
 /**
  *
@@ -25,7 +26,7 @@ public class GameManagedBean {
 
   private transient final Logger log = Logger.getLogger(this.getClass().getName());
   private Date startDate;
-  //@Inject
+  @Inject
   private BlackjackTable table;
   private boolean gameStarted;
 
@@ -81,11 +82,6 @@ public class GameManagedBean {
       res = "start the game for advice";
     }
     return res;
-  }
-
-  public void ciao() {
-  log.info("ciao");
-    
   }
   
   public void newGame() {
