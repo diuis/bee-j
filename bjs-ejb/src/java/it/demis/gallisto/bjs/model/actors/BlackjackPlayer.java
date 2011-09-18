@@ -1,6 +1,7 @@
 package it.demis.gallisto.bjs.model.actors;
 
 import it.demis.gallisto.bjs.model.BlackjackHand;
+import it.demis.gallisto.bjs.model.Hand;
 import it.demis.gallisto.bjs.model.cards.PlayingCard;
 import it.demis.gallisto.bjs.strategies.GameStrategy;
 import it.demis.gallisto.bjs.strategies.StrategyException;
@@ -18,8 +19,6 @@ import javax.inject.Inject;
 @ManagedBean
 public class BlackjackPlayer extends GameActor {
 
-  private BlackjackHand hand = new BlackjackHand();
-
   public BlackjackPlayer() {
     this(null);
   }
@@ -32,6 +31,7 @@ public class BlackjackPlayer extends GameActor {
       name = _name;
     }
     this.setName(name);
+    this.setHand(new BlackjackHand());
   }
 
   public void initHand(final PlayingCard[] _card) {
@@ -55,15 +55,7 @@ public class BlackjackPlayer extends GameActor {
     _log.log(Level.INFO, "player created, his name is {0}", this.getName());
   }
 
-  public BlackjackHand getHand() {
-    return this.hand;
-  }
-
-  protected void setHand(final BlackjackHand _hand) {
-    this.hand = _hand;
-  }
-
-  public String getAdvice(final BlackjackHand _dealerHand) throws StrategyException {
+  public String getAdvice(final Hand _dealerHand) throws StrategyException {
     String res = null;
     res = this.getStrategy().getAdvice(this.getHand(), _dealerHand, null).name();
     return res;

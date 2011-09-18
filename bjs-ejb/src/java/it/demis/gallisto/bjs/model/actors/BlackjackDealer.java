@@ -23,9 +23,9 @@ import javax.inject.Inject;
 @ManagedBean
 public class BlackjackDealer extends GameActor {
 
-  @Inject @BlackjackCardDeckQualifier
+  @Inject
+  @BlackjackCardDeckQualifier
   private CardDeck deck;
-  private BlackjackHand hand = new BlackjackHand();
 
   public BlackjackDealer() {
     this(null);
@@ -34,6 +34,7 @@ public class BlackjackDealer extends GameActor {
   public BlackjackDealer(final String _name) {
     super();
     this.setName(_name == null || _name.isEmpty() ? "anonymous dealer" : _name);
+    this.setHand(new BlackjackHand());
   }
 
   @PostConstruct
@@ -52,14 +53,6 @@ public class BlackjackDealer extends GameActor {
 
   protected void setDeck(final CardDeck _deck) {
     this.deck = _deck;
-  }
-
-  public BlackjackHand getHand() {
-    return hand;
-  }
-
-  protected void setHand(final BlackjackHand _hand) {
-    this.hand = _hand;
   }
 
   public PlayingCard[] getCardsForPlayer() {

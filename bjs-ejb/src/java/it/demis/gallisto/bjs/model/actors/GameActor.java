@@ -4,7 +4,7 @@
  */
 package it.demis.gallisto.bjs.model.actors;
 
-import it.demis.gallisto.bjs.model.BlackjackHand;
+import it.demis.gallisto.bjs.model.Hand;
 import it.demis.gallisto.bjs.strategies.GameStrategy;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,6 +18,7 @@ public abstract class GameActor {
   protected final Logger _log = Logger.getLogger(this.getClass().getName());
   private GameStrategy strategy;
   private String name;
+  private Hand hand;
 
   public GameActor() {
     super();
@@ -31,8 +32,6 @@ public abstract class GameActor {
     this.name = _name;
   }
 
-  public abstract BlackjackHand getHand();
-  
   public GameStrategy getStrategy() {
     return this.strategy;
   }
@@ -42,6 +41,14 @@ public abstract class GameActor {
     if (_log.isLoggable(Level.FINE)) {
       _log.log(Level.FINE, "strategy injected {0}", _strategy);
     }
+  }
+
+  public Hand getHand() {
+    return this.hand;
+  }
+
+  protected void setHand(final Hand _hand) {
+    this.hand = _hand;
   }
 
   @Override

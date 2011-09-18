@@ -4,9 +4,9 @@
  */
 package it.demis.gallisto.bjs.strategies.impl;
 
-import it.demis.gallisto.bjs.strategies.AbstractGameStrategy;
-import it.demis.gallisto.bjs.model.BlackjackHand;
+import it.demis.gallisto.bjs.model.Hand;
 import it.demis.gallisto.bjs.model.actors.Memory;
+import it.demis.gallisto.bjs.strategies.AbstractGameStrategy;
 import it.demis.gallisto.bjs.strategies.Advice;
 import it.demis.gallisto.bjs.strategies.StrategyException;
 import java.util.logging.Level;
@@ -23,7 +23,7 @@ public class DealerBlackjackGameStrategy extends AbstractGameStrategy {
   }
 
   @Override
-  public Advice getAdvice(final BlackjackHand _playerHand, final BlackjackHand _dealerHand, final Memory _playerMemory) throws StrategyException {
+  public Advice getAdvice(final Hand _playerHand, final Hand _dealerHand, final Memory _playerMemory) throws StrategyException {
     Advice res = null;
     if (_dealerHand.getValueOfUpCards().getValue() >= 17) {
       res = Advice.STAY;
