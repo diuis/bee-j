@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  */
 public abstract class AbstractGameStrategy implements GameStrategy {
 
-  protected final Logger _log = Logger.getLogger(this.getClass().getName());
+  protected transient final Logger _log = Logger.getLogger(this.getClass().getName());
 
   @Override
   public String getName() {

@@ -6,6 +6,7 @@ package it.demis.gallisto.bjs.model.actors;
 
 import it.demis.gallisto.bjs.model.Hand;
 import it.demis.gallisto.bjs.strategies.GameStrategy;
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,9 +14,9 @@ import java.util.logging.Logger;
  *
  * @author Demis Gallisto
  */
-public abstract class GameActor {
+public abstract class GameActor implements Serializable {
 
-  protected final Logger _log = Logger.getLogger(this.getClass().getName());
+  protected transient final Logger _log = Logger.getLogger(this.getClass().getName());
   private GameStrategy strategy;
   private String name;
   private Hand hand;

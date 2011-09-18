@@ -61,11 +61,6 @@ public class BlackjackPlayer extends GameActor {
     return res;
   }
 
-  public void play() throws StrategyException {
-    this.getStrategy().getAdvice(this.getHand(), null, null);
-
-  }
-
   public void stay() {
   }
 

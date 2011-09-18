@@ -13,12 +13,13 @@ import java.util.logging.Logger;
 import javax.enterprise.event.Observes;
 
 /**
- *
+ * This class is for future use (for example, strategies based on cards counting)
+ * 
  * @author Demis Gallisto
  */
 public class Memory {
 
-  private Logger _log = Logger.getLogger(this.getClass().getName());
+  private transient Logger _log = Logger.getLogger(this.getClass().getName());
   private List<PlayingCard> cards = new ArrayList<>();
 
   public List<PlayingCard> getCards() {

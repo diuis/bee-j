@@ -5,7 +5,6 @@
 package it.demis.gallisto.bjs.strategies.impl;
 
 import it.demis.gallisto.bjs.strategies.AbstractGameStrategy;
-import it.demis.gallisto.bjs.model.BlackjackHand;
 import it.demis.gallisto.bjs.model.Hand;
 import it.demis.gallisto.bjs.model.HandValue;
 import it.demis.gallisto.bjs.model.actors.Memory;
@@ -119,8 +118,6 @@ public class PlayerBlackjackBasicStrategy extends AbstractGameStrategy {
     } else {
       throw new StrategyException(String.format("strategy %s is available only with FrenchCard type", this.getClass().getName()));
     }
-
-
 
     if (this._log.isLoggable(Level.INFO)) {
       this._log.log(Level.INFO, "advice is {0} for player hand {1}", new Object[]{res, _playerHand});
