@@ -19,7 +19,7 @@ import javax.inject.Inject;
 @ManagedBean
 public class BlackjackTable {
 
-  private final Logger _log = Logger.getLogger(this.getClass().getName());
+  private transient final Logger _log = Logger.getLogger(this.getClass().getName());
 
   @Inject
   private BlackjackPlayer player;

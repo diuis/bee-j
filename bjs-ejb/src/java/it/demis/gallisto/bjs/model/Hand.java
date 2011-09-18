@@ -4,15 +4,15 @@
  */
 package it.demis.gallisto.bjs.model;
 
-import it.demis.gallisto.bjs.model.BlackjackHand.HandValue;
 import it.demis.gallisto.bjs.model.cards.PlayingCard;
+import java.io.Serializable;
 import java.util.List;
 
 /**
  *
  * @author Demis Gallisto
  */
-public interface Hand {
+public interface Hand extends Serializable {
 
   boolean isAcePresentOnUpCards();
 
@@ -27,11 +27,10 @@ public interface Hand {
   int totalAllCards();
 
   void addCard(final PlayingCard _card);
-  
+
   PlayingCard getFirstUpCard();
-  
+
   List<PlayingCard> getUpCards();
-  
+
   List<PlayingCard> getAllCards();
-  
 }

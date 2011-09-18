@@ -5,12 +5,13 @@
 package it.demis.gallisto.bjs.model;
 
 import it.demis.gallisto.bjs.model.cards.PlayingCard;
+import java.io.Serializable;
 
 /**
  *
  * @author Demis Gallisto
  */
-public interface CardDeck {
+public interface CardDeck extends Serializable {
 
   void init();
 

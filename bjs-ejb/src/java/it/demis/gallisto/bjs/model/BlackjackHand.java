@@ -15,46 +15,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * @author Demis Gallisto
  */
 public class BlackjackHand implements Hand {
-
-  public class HandValue {
-
-    private int value = 0;
-    private boolean soft = false;
-    private boolean pair = false;
-
-    public HandValue() {
-      super();
-    }
-
-    @Override
-    public String toString() {
-      return "HandValue{" + "value=" + value + ", soft=" + soft + ", pair=" + pair + '}';
-    }
-
-    public boolean isSoft() {
-      return soft;
-    }
-
-    private void setSoft(final boolean _soft) {
-      this.soft = _soft;
-    }
-
-    public int getValue() {
-      return value;
-    }
-
-    private void setValue(final int _value) {
-      this.value = _value;
-    }
-
-    public boolean isPair() {
-      return pair;
-    }
-
-    private void setPair(final boolean _pair) {
-      this.pair = _pair;
-    }
-  }
+  
   private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
   private List<PlayingCard> cards = new ArrayList<>();
 
@@ -204,7 +165,7 @@ public class BlackjackHand implements Hand {
    */
   @Override
   public HandValue getValueOfUpCards() {
-    HandValue res = new HandValue();
+    HandValue res = null;
     boolean acePresent = false;
     try {
       int val = 0;
@@ -235,9 +196,7 @@ public class BlackjackHand implements Hand {
           }
         }
       }
-      res.setValue(val);
-      res.setSoft(soft);
-      res.setPair(pair);
+      res = new HandValue(val, soft, pair);
     } finally {
       this.lock.readLock().unlock();
     }
@@ -249,7 +208,7 @@ public class BlackjackHand implements Hand {
    */
   @Override
   public HandValue getValueOfAllCards() {
-    HandValue res = new HandValue();
+    HandValue res = null;
     boolean acePresent = false;
     try {
       int val = 0;
@@ -280,9 +239,7 @@ public class BlackjackHand implements Hand {
           }
         }
       }
-      res.setValue(val);
-      res.setSoft(soft);
-      res.setPair(pair);
+      res = new HandValue(val, soft, pair);
     } finally {
       this.lock.readLock().unlock();
     }
