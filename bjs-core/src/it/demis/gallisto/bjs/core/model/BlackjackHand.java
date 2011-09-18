@@ -75,6 +75,23 @@ public class BlackjackHand implements Hand {
     }
     return res;
   }
+  
+  @Override
+  public void makeAllCardsWithFaceUp() {
+    try {
+      this.lock.writeLock().lock();
+      final List<PlayingCard> allCards = this.getAllCards();
+      if (allCards != null) {
+        for (final PlayingCard card : allCards) {
+          if (card != null && card.getFacing().equals(Facing.DOWN)) {
+            card.setFacing(Facing.UP);
+          }
+        }
+      }
+    } finally {
+      this.lock.writeLock().unlock();
+    }
+  }
 
   /**
    * This method is thread-safe
@@ -133,7 +150,7 @@ public class BlackjackHand implements Hand {
     }
     return res;
   }
-
+  
   private int translateValue(final PlayingCard _card) {
     int res = 0;
     try {
@@ -291,7 +308,7 @@ public class BlackjackHand implements Hand {
     }
     return res;
   }
-
+  
   @Override
   public String toString() {
     return "Hand{" + "cards=" + cards + '}';

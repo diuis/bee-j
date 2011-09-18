@@ -5,69 +5,84 @@
 package it.demis.gallisto.bjs.web;
 
 import it.demis.gallisto.bjs.core.model.BlackjackTable;
+import it.demis.gallisto.bjs.core.model.Table;
 import it.demis.gallisto.bjs.core.model.cards.PlayingCard;
 import it.demis.gallisto.bjs.core.strategies.StrategyException;
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.Date;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.enterprise.context.RequestScoped;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 /**
  *
  * @author Demis Gallisto
  */
-@ManagedBean(name="game")
-@RequestScoped
-public class GameManagedBean {
+@ManagedBean(name = "game")
+@ViewScoped
+public class GameManagedBean implements Serializable {
 
   private transient final Logger log = Logger.getLogger(this.getClass().getName());
   private Date startDate;
   @Inject
-  private BlackjackTable table;
+  private Table table;
   private boolean gameStarted;
+  private boolean gameStopped;
 
   public GameManagedBean() {
     super();
   }
 
+  public boolean isGameStopped() {
+    return gameStopped;
+  }
+
+  public void setGameStopped(final boolean _gameStopped) {
+    this.gameStopped = _gameStopped;
+  }
+
   public boolean isGameStarted() {
-    return gameStarted;
+    return this.gameStarted;
   }
 
   protected void setGameStarted(final boolean _gameStarted) {
     this.gameStarted = _gameStarted;
   }
 
-  public BlackjackTable getTable() {
-    return table;
+  public Table getTable() {
+    return this.table;
   }
 
-  protected void setTable(final BlackjackTable _table) {
+  protected void setTable(final Table _table) {
     this.table = _table;
   }
 
   public Date getStartDate() {
-    return startDate;
+    return this.startDate;
   }
 
-  protected void setStartDate(Date startDate) {
-    this.startDate = startDate;
+  protected void setStartDate(final Date _startDate) {
+    this.startDate = _startDate;
   }
 
   public void playerStay() {
     if (this.log.isLoggable(Level.INFO)) {
       log.info("player stay");
     }
+    this.getTable().getDealer().showAll();
+    this.setGameStopped(true);
   }
 
   public void playerHit() {
     if (this.log.isLoggable(Level.INFO)) {
       log.info("player hit");
     }
+
   }
 
   public String getAdvice() {
@@ -83,7 +98,8 @@ public class GameManagedBean {
     }
     return res;
   }
-  
+
+  @PostConstruct
   public void newGame() {
     log.info("Start a new black jack game...");
     this.setStartDate(new Date());
@@ -107,8 +123,8 @@ public class GameManagedBean {
     }
     log.log(Level.INFO, " player game strategy: {0}", this.table.getPlayer().getStrategy());
 
-
     this.setGameStarted(true);
+    this.setGameStopped(false);
     log.info("...game started!");
   }
 }

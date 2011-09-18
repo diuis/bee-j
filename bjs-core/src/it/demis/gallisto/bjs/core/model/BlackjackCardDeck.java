@@ -14,8 +14,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
 
@@ -24,6 +24,7 @@ import javax.inject.Inject;
  * @author Demis Gallisto
  */
 @BlackjackCardDeckQualifier
+@ApplicationScoped
 public class BlackjackCardDeck implements CardDeck {
 
   private List<PlayingCard> availabCards = new ArrayList<>(52);

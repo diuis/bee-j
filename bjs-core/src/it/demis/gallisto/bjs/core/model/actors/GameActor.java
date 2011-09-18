@@ -52,6 +52,12 @@ public abstract class GameActor implements Serializable {
     this.hand = _hand;
   }
 
+  public void showAll() {
+    if (this.getHand() != null) {
+      this.getHand().makeAllCardsWithFaceUp();
+    }
+  }
+
   @Override
   public String toString() {
     return "GameActor{" + "strategy=" + strategy + ", name=" + name + '}';

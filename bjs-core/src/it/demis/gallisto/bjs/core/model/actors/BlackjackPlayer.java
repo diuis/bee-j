@@ -60,9 +60,6 @@ public class BlackjackPlayer extends GameActor {
     return res;
   }
 
-  public void stay() {
-  }
-
   public void hit() {
   }
 

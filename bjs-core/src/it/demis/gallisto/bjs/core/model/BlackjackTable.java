@@ -17,10 +17,9 @@ import javax.inject.Inject;
  * @author Demis Gallisto
  */
 @ManagedBean
-public class BlackjackTable {
+public class BlackjackTable implements Table {
 
   private transient final Logger _log = Logger.getLogger(this.getClass().getName());
-
   @Inject
   private BlackjackPlayer player;
   @Inject
@@ -35,19 +34,21 @@ public class BlackjackTable {
     this._log.log(Level.INFO, "blackjack table created: the dealer names is {0} and the player name is {1}", new Object[]{this.getDealer().getName(), this.getPlayer().getName()});
   }
 
+  @Override
   public BlackjackDealer getDealer() {
-    return dealer;
+    return this.dealer;
   }
 
-  public void setDealer(final BlackjackDealer _dealer) {
+  protected void setDealer(final BlackjackDealer _dealer) {
     this.dealer = _dealer;
   }
 
+  @Override
   public BlackjackPlayer getPlayer() {
-    return player;
+    return this.player;
   }
 
-  public void setPlayer(final BlackjackPlayer _player) {
+  protected void setPlayer(final BlackjackPlayer _player) {
     this.player = _player;
   }
 }

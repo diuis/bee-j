@@ -10,7 +10,7 @@
       <h:form>
         <p:separator/>
         <h:panelGrid columns="1" style="margin-left: auto; margin-right: auto;">
-          <p:commandButton value="start a new game" actionListener="#{game.newGame}" update="tableGame" /> 
+          <h:outputLink>start a new game</h:outputLink>
         </h:panelGrid>
         <p:separator/>
       </h:form>
@@ -57,8 +57,8 @@
                 </p:column>
               </p:dataGrid>
 
-              <p:commandButton value="stay" actionListener="#{game.playerStay}" update="tableGame"/>
-              <p:commandButton value="hit" actionListener="#{game.playerHit}" update="tableGame"/>
+              <p:commandButton value="stay" actionListener="#{game.playerStay}" disabled="#{game.gameStopped}" update="tableGame"/>
+              <p:commandButton value="hit" actionListener="#{game.playerHit}" disabled="#{game.gameStopped}" update="tableGame"/>
 
               <h:outputText value="advice: " />
               <h:outputText value="#{game.advice}" />
