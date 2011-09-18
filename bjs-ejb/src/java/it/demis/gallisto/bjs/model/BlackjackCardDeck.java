@@ -24,7 +24,7 @@ import javax.inject.Inject;
  * @author Demis Gallisto
  */
 @ManagedBean
-public class BlackjackCardDeck {
+public class BlackjackCardDeck implements CardDeck {
 
   private List<PlayingCard> availabCards = new ArrayList<>(52);
   private List<PlayingCard> removedCards = new ArrayList<>(52);
@@ -40,6 +40,7 @@ public class BlackjackCardDeck {
   /**
    * This method is thread-safe
    */
+  @Override
   @PostConstruct
   public void init() {
     try {
@@ -89,6 +90,7 @@ public class BlackjackCardDeck {
   /**
    * This method is thread-safe
    */
+  @Override
   public PlayingCard getCard() {
     PlayingCard res = null;
     try {
@@ -115,6 +117,7 @@ public class BlackjackCardDeck {
   /**
    * This method is thread-safe
    */
+  @Override
   public int totalAvailableCards() {
     int res = 0;
     try {
@@ -133,6 +136,7 @@ public class BlackjackCardDeck {
   /**
    * This method is thread-safe
    */
+  @Override
   public int totalRemovedCards() {
     int res = 0;
     try {
