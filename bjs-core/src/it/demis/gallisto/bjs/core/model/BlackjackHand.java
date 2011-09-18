@@ -15,9 +15,13 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * @author Demis Gallisto
  */
 public class BlackjackHand implements Hand {
-  
+
   private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
   private List<PlayingCard> cards = new ArrayList<>();
+
+  public BlackjackHand() {
+    super();
+  }
 
   /**
    * This method is thread-safe
@@ -75,7 +79,7 @@ public class BlackjackHand implements Hand {
     }
     return res;
   }
-  
+
   @Override
   public void makeAllCardsWithFaceUp() {
     try {
@@ -125,7 +129,7 @@ public class BlackjackHand implements Hand {
    * This method is thread-safe
    */
   @Override
-  public int totalAllCards() {
+  public int getTotalAllCards() {
     int res = 0;
     try {
       this.lock.readLock().lock();
@@ -140,7 +144,7 @@ public class BlackjackHand implements Hand {
    * This method is thread-safe
    */
   @Override
-  public int totalUpCards() {
+  public int getTotalUpCards() {
     int res = 0;
     try {
       this.lock.readLock().lock();
@@ -150,7 +154,7 @@ public class BlackjackHand implements Hand {
     }
     return res;
   }
-  
+
   private int translateValue(final PlayingCard _card) {
     int res = 0;
     try {
@@ -308,7 +312,19 @@ public class BlackjackHand implements Hand {
     }
     return res;
   }
-  
+
+  @Override
+  public boolean isBusting() {
+    boolean res = false;
+    try {
+      this.lock.readLock().lock();
+      res = this.getValueOfAllCards().getValue() > 21;
+    } finally {
+      this.lock.readLock().unlock();
+    }
+    return res;
+  }
+
   @Override
   public String toString() {
     return "Hand{" + "cards=" + cards + '}';

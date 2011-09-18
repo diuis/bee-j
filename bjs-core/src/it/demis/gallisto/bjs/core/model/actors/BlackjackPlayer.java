@@ -60,7 +60,19 @@ public class BlackjackPlayer extends GameActor {
     return res;
   }
 
-  public void hit() {
+  public boolean hit(final PlayingCard _card) {
+    boolean res = true;
+    if (_card == null) {
+      throw new IllegalArgumentException("not valid parameter card: it's null");
+    }
+    this.getHand().addCard(_card);
+    if (this.getHand().isBusting()) {
+      res = false;
+      if (_log.isLoggable(Level.INFO)) {
+        _log.log(Level.INFO, "hand is busting: {0}", this.getHand());
+      }
+    }
+    return res;
   }
 
   @Override

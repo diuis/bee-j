@@ -4,7 +4,6 @@
  */
 package it.demis.gallisto.bjs.web;
 
-import it.demis.gallisto.bjs.core.model.BlackjackTable;
 import it.demis.gallisto.bjs.core.model.Table;
 import it.demis.gallisto.bjs.core.model.cards.PlayingCard;
 import it.demis.gallisto.bjs.core.strategies.StrategyException;
@@ -15,8 +14,10 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 /**
@@ -76,13 +77,20 @@ public class GameManagedBean implements Serializable {
     }
     this.getTable().getDealer().showAll();
     this.setGameStopped(true);
+    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Successful", "Player stay: games stopped"));
   }
 
   public void playerHit() {
     if (this.log.isLoggable(Level.INFO)) {
       log.info("player hit");
     }
-
+    final boolean inGame = this.getTable().getPlayer().hit(this.getTable().getDealer().getAnotherCardForPlayer());
+    if (!inGame) {
+      this.setGameStopped(true);
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Successful", "Player loses: games stopped"));
+    } else {
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Successful", "Player hit successful"));
+    }
   }
 
   public String getAdvice() {
@@ -98,7 +106,7 @@ public class GameManagedBean implements Serializable {
     }
     return res;
   }
-
+ 
   @PostConstruct
   public void newGame() {
     log.info("Start a new black jack game...");

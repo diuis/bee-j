@@ -55,6 +55,17 @@ public class BlackjackDealer extends GameActor {
     this.deck = _deck;
   }
 
+  public PlayingCard getAnotherCardForPlayer() {
+    PlayingCard res = null;
+    res = this.getDeck().getCard();
+    res.setFacing(Facing.UP);
+    if (_log.isLoggable(Level.INFO)) {
+      _log.log(Level.INFO, "tot remaining cards : {0}", this.getDeck().totalAvailableCards());
+      _log.log(Level.INFO, "tot removed cards : {0}", this.getDeck().totalRemovedCards());
+    }
+    return res;
+  }
+
   public PlayingCard[] getCardsForPlayer() {
     final PlayingCard[] res = new PlayingCard[2];
     res[0] = this.getDeck().getCard();

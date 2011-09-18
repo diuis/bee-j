@@ -59,7 +59,7 @@ public class PlayerBlackjackBasicStrategy extends AbstractGameStrategy {
 
       final Integer idxArrayD = this.dataStrategy.getDealerMapping().get(dealerHandCalculatedValue);
 
-      final int totUpCards = _playerHand.totalUpCards();
+      final int totUpCards = _playerHand.getTotalUpCards();
       if (totUpCards > 0) {
         final HandValue handValue = _playerHand.getValueOfUpCards();
 

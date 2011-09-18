@@ -22,9 +22,9 @@ public interface Hand extends Serializable {
 
   HandValue getValueOfUpCards();
 
-  int totalUpCards();
+  int getTotalUpCards();
 
-  int totalAllCards();
+  int getTotalAllCards();
 
   void addCard(final PlayingCard _card);
 
@@ -35,4 +35,6 @@ public interface Hand extends Serializable {
   List<PlayingCard> getAllCards();
 
   void makeAllCardsWithFaceUp();
+  
+  boolean isBusting();
 }
