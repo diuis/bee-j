@@ -31,6 +31,7 @@ public class CardDeck {
   private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
   @Inject
   private Event<CardRemovedEvent> events;
+  private boolean initialized;
 
   public CardDeck() {
     super();
@@ -40,7 +41,7 @@ public class CardDeck {
    * This method is thread-safe
    */
   @PostConstruct
-  protected void init() {
+  public void init() {
     try {
       this.lock.writeLock().lock();
       if (!this.availabCards.isEmpty()) {
@@ -59,9 +60,18 @@ public class CardDeck {
         }
       }
       this.shuffle();
+      this.setInitialized(true);
     } finally {
       this.lock.writeLock().unlock();
     }
+  }
+
+  protected boolean isInitialized() {
+    return this.initialized;
+  }
+
+  protected void setInitialized(final boolean _initialized) {
+    this.initialized = _initialized;
   }
 
   /**
@@ -82,15 +92,19 @@ public class CardDeck {
   public PlayingCard getCard() {
     PlayingCard res = null;
     try {
-      this.lock.writeLock().lock();
-      if (this.availabCards.isEmpty()) {
-        this.init();
-      }
-      final PlayingCard card = this.availabCards.remove(0);
-      this.removedCards.add(card);
-      res = card;
-      if (this.events != null) {
-        this.events.fire(new CardRemovedEvent(res));
+      if (this.isInitialized()) {
+        this.lock.writeLock().lock();
+        if (this.availabCards.isEmpty()) {
+          this.init();
+        }
+        final PlayingCard card = this.availabCards.remove(0);
+        this.removedCards.add(card);
+        res = card;
+        if (this.events != null) {
+          this.events.fire(new CardRemovedEvent(res));
+        }
+      } else {
+        throw new IllegalStateException("deck not initialized: call the init method or use CDI injection");
       }
     } finally {
       this.lock.writeLock().unlock();
@@ -104,8 +118,12 @@ public class CardDeck {
   public int totalAvailableCards() {
     int res = 0;
     try {
-      this.lock.readLock().lock();
-      res = this.availabCards.size();
+      if (this.isInitialized()) {
+        this.lock.readLock().lock();
+        res = this.availabCards.size();
+      } else {
+        throw new IllegalStateException("deck not initialized: call the init method or use CDI injection");
+      }
     } finally {
       this.lock.readLock().unlock();
     }
@@ -118,8 +136,12 @@ public class CardDeck {
   public int totalRemovedCards() {
     int res = 0;
     try {
-      this.lock.readLock().lock();
-      res = this.removedCards.size();
+      if (this.isInitialized()) {
+        this.lock.readLock().lock();
+        res = this.removedCards.size();
+      } else {
+        throw new IllegalStateException("deck not initialized: call the init method or use CDI injection");
+      }
     } finally {
       this.lock.readLock().unlock();
     }

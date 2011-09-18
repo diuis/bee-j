@@ -4,13 +4,13 @@
  */
 package it.demis.gallisto.bjs.model.actors;
 
+import java.util.List;
+import it.demis.gallisto.bjs.model.cards.FrenchCard;
 import it.demis.gallisto.bjs.model.Hand;
+import it.demis.gallisto.bjs.model.cards.Facing;
+import it.demis.gallisto.bjs.model.cards.FrenchSuit;
 import it.demis.gallisto.bjs.model.cards.PlayingCard;
-import it.demis.gallisto.bjs.strategies.GameStrategy;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -19,140 +19,47 @@ import static org.junit.Assert.*;
  * @author Demis Gallisto
  */
 public class PlayerTest {
-  
+
+  private Player player;
+
   public PlayerTest() {
     super();
   }
 
-  @BeforeClass
-  public static void setUpClass() throws Exception {
-  }
-
-  @AfterClass
-  public static void tearDownClass() throws Exception {
-  }
-  
   @Before
   public void setUp() {
-  }
-  
-  @After
-  public void tearDown() {
+    PlayingCard[] cards = new PlayingCard[2];
+    cards[0] = new FrenchCard("4", FrenchSuit.SPADES.name());
+    cards[0].setFacing(Facing.UP);
+    cards[1] = new FrenchCard("K", FrenchSuit.SPADES.name());
+    cards[1].setFacing(Facing.UP);
+    this.player = new Player("test player");
+    this.player.initHand(cards);
   }
 
-  /**
-   * Test of initHand method, of class Player.
-   */
-  @Test
+  @Test(expected = IllegalArgumentException.class)
   public void testInitHand() {
-    System.out.println("initHand");
-    PlayingCard[] _card = null;
-    Player instance = new Player();
-    instance.initHand(_card);
-    // TODO review the generated test code and remove the default call to fail.
-    fail("The test case is a prototype.");
+
+    PlayingCard[] cards = new PlayingCard[3];
+
+    cards[0] = new FrenchCard("3", FrenchSuit.CLUBS.name());
+    cards[1] = new FrenchCard("Q", FrenchSuit.CLUBS.name());
+    cards[2] = new FrenchCard("4", FrenchSuit.CLUBS.name());
+
+    Player pl = new Player();
+    pl.initHand(cards);
+
   }
 
-  /**
-   * Test of init method, of class Player.
-   */
-  @Test
-  public void testInit() {
-    System.out.println("init");
-    Player instance = new Player();
-    instance.init();
-    // TODO review the generated test code and remove the default call to fail.
-    fail("The test case is a prototype.");
-  }
-
-  /**
-   * Test of getHand method, of class Player.
-   */
   @Test
   public void testGetHand() {
-    System.out.println("getHand");
-    Player instance = new Player();
-    Hand expResult = null;
-    Hand result = instance.getHand();
-    assertEquals(expResult, result);
-    // TODO review the generated test code and remove the default call to fail.
-    fail("The test case is a prototype.");
-  }
+    Hand hand = this.player.getHand();
+    assertNotNull(hand);
 
-  /**
-   * Test of setHand method, of class Player.
-   */
-  @Test
-  public void testSetHand() {
-    System.out.println("setHand");
-    Hand _hand = null;
-    Player instance = new Player();
-    instance.setHand(_hand);
-    // TODO review the generated test code and remove the default call to fail.
-    fail("The test case is a prototype.");
-  }
+    List<PlayingCard> cards = hand.getUpCards();
+    assertNotNull(cards);
 
-  /**
-   * Test of getAdvice method, of class Player.
-   */
-  @Test
-  public void testGetAdvice() throws Exception {
-    System.out.println("getAdvice");
-    Hand _dealerHand = null;
-    Player instance = new Player();
-    String expResult = "";
-    String result = instance.getAdvice(_dealerHand);
-    assertEquals(expResult, result);
-    // TODO review the generated test code and remove the default call to fail.
-    fail("The test case is a prototype.");
-  }
-
-  /**
-   * Test of play method, of class Player.
-   */
-  @Test
-  public void testPlay() throws Exception {
-    System.out.println("play");
-    Player instance = new Player();
-    instance.play();
-    // TODO review the generated test code and remove the default call to fail.
-    fail("The test case is a prototype.");
-  }
-
-  /**
-   * Test of stay method, of class Player.
-   */
-  @Test
-  public void testStay() {
-    System.out.println("stay");
-    Player instance = new Player();
-    instance.stay();
-    // TODO review the generated test code and remove the default call to fail.
-    fail("The test case is a prototype.");
-  }
-
-  /**
-   * Test of hit method, of class Player.
-   */
-  @Test
-  public void testHit() {
-    System.out.println("hit");
-    Player instance = new Player();
-    instance.hit();
-    // TODO review the generated test code and remove the default call to fail.
-    fail("The test case is a prototype.");
-  }
-
-  /**
-   * Test of setStrategy method, of class Player.
-   */
-  @Test
-  public void testSetStrategy() {
-    System.out.println("setStrategy");
-    GameStrategy _strategy = null;
-    Player instance = new Player();
-    instance.setStrategy(_strategy);
-    // TODO review the generated test code and remove the default call to fail.
-    fail("The test case is a prototype.");
+    assertEquals(Facing.UP, cards.get(0).getFacing());
+    assertEquals(Facing.UP, cards.get(1).getFacing());
   }
 }
