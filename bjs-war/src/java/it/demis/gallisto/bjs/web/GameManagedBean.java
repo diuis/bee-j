@@ -24,7 +24,7 @@ import javax.inject.Named;
 @RequestScoped
 public class GameManagedBean {
 
-  private final Logger log = Logger.getLogger(this.getClass().getName());
+  private transient final Logger log = Logger.getLogger(this.getClass().getName());
   private Date startDate;
   @Inject
   private BlackjackTable table;
