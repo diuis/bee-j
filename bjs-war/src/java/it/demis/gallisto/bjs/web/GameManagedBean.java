@@ -4,31 +4,34 @@
  */
 package it.demis.gallisto.bjs.web;
 
-import it.demis.gallisto.bjs.model.BlackjackTable;
-import it.demis.gallisto.bjs.model.cards.PlayingCard;
-import it.demis.gallisto.bjs.strategies.StrategyException;
+import it.demis.gallisto.bjs.core.model.BlackjackTable;
+import it.demis.gallisto.bjs.core.model.cards.PlayingCard;
+import it.demis.gallisto.bjs.core.strategies.StrategyException;
 import java.text.DateFormat;
 import java.util.Date;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
+import javax.faces.bean.ManagedBean;
 
 /**
  *
  * @author Demis Gallisto
  */
-@Named("game")
+@ManagedBean(name="game")
 @RequestScoped
 public class GameManagedBean {
 
   private transient final Logger log = Logger.getLogger(this.getClass().getName());
   private Date startDate;
-  @Inject
+  //@Inject
   private BlackjackTable table;
   private boolean gameStarted;
+
+  public GameManagedBean() {
+    super();
+  }
 
   public boolean isGameStarted() {
     return gameStarted;
@@ -54,22 +57,18 @@ public class GameManagedBean {
     this.startDate = startDate;
   }
 
-  public GameManagedBean() {
-    super();
-  }
-
   public void playerStay() {
     if (this.log.isLoggable(Level.INFO)) {
       log.info("player stay");
     }
   }
-  
+
   public void playerHit() {
-     if (this.log.isLoggable(Level.INFO)) {
+    if (this.log.isLoggable(Level.INFO)) {
       log.info("player hit");
     }
   }
-  
+
   public String getAdvice() {
     String res = null;
     if (this.isGameStarted()) {
@@ -84,6 +83,11 @@ public class GameManagedBean {
     return res;
   }
 
+  public void ciao() {
+  log.info("ciao");
+    
+  }
+  
   public void newGame() {
     log.info("Start a new black jack game...");
     this.setStartDate(new Date());

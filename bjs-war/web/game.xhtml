@@ -10,20 +10,16 @@
       <h:form>
         <p:separator/>
         <h:panelGrid columns="1" style="margin-left: auto; margin-right: auto;">
-          <p:commandButton value="start a new game" actionListener="#{game.newGame}" update="msgs" /> 
+          <p:commandButton value="start a new game" actionListener="#{game.ciao}" update="tableGame" /> 
         </h:panelGrid>
         <p:separator/>
       </h:form>
 
-      <p:panel id="msgs" header="Table game">
+      <p:panel id="tableGame" header="Table game">
         <h:form>
 
           <p:panel header="table info">
             <h:outputText value="game is started: " />
-            <h:outputText value="#{game.gameStarted}" />
-            <h:outputText value="cards used: " />
-            <h:outputText value="#{game.gameStarted}" />
-            <h:outputText value="cards used: " />
             <h:outputText value="#{game.gameStarted}" />
           </p:panel>
 
@@ -61,8 +57,8 @@
                 </p:column>
               </p:dataGrid>
 
-              <p:commandButton value="stay" actionListener="#{game.playerStay}" update="msgs"/>
-              <p:commandButton value="hit" actionListener="#{game.playerHit}" update="msgs"/>
+              <p:commandButton value="stay" actionListener="#{game.playerStay}" update="tableGame"/>
+              <p:commandButton value="hit" actionListener="#{game.playerHit}" update="tableGame"/>
 
               <h:outputText value="advice: " />
               <h:outputText value="#{game.advice}" />
