@@ -31,7 +31,6 @@ public class BlackjackPlayer extends GameActor {
       name = _name;
     }
     this.setName(name);
-    this.setHand(new BlackjackHand());
   }
 
   public void initHand(final PlayingCard[] _card) {
