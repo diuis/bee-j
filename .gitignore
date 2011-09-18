@@ -2,11 +2,9 @@
 /bjs-ejb/dist/
 /bjs-ejb/nbproject/private/
 /bjs-war/build/
-/bjs-war/dist/
 /bjs-war/nbproject/private/
-/build/
-/dist/
 /nbproject/private/
 /bjs-core/nbproject/private/
 /bjs-core/dist/
 /bjs-core/build/
+/build/
