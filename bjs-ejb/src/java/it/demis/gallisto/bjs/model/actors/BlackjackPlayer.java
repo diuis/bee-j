@@ -16,15 +16,15 @@ import javax.inject.Inject;
  * @author Demis Gallisto
  */
 @ManagedBean
-public class Player extends GameActor {
+public class BlackjackPlayer extends GameActor {
 
   private Hand hand = new Hand();
 
-  public Player() {
+  public BlackjackPlayer() {
     this(null);
   }
 
-  public Player(final String _name) {
+  public BlackjackPlayer(final String _name) {
     String name = null;
     if (_name == null || _name.isEmpty()) {
       name = "anonymous player [" + UUID.randomUUID() + "]";

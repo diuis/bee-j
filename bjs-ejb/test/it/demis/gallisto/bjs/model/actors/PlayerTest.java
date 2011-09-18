@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
  */
 public class PlayerTest {
 
-  private Player player;
+  private BlackjackPlayer player;
 
   public PlayerTest() {
     super();
@@ -33,7 +33,7 @@ public class PlayerTest {
     cards[0].setFacing(Facing.UP);
     cards[1] = new FrenchCard("K", FrenchSuit.SPADES.name());
     cards[1].setFacing(Facing.UP);
-    this.player = new Player("test player");
+    this.player = new BlackjackPlayer("test player");
     this.player.initHand(cards);
   }
 
@@ -46,7 +46,7 @@ public class PlayerTest {
     cards[1] = new FrenchCard("Q", FrenchSuit.CLUBS.name());
     cards[2] = new FrenchCard("4", FrenchSuit.CLUBS.name());
 
-    Player pl = new Player();
+    BlackjackPlayer pl = new BlackjackPlayer();
     pl.initHand(cards);
 
   }

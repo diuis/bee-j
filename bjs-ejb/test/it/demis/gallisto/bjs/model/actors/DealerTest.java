@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
  */
 public class DealerTest {
 
-  private Dealer dealer;
+  private BlackjackDealer dealer;
 
   public DealerTest() {
     super();
@@ -31,7 +31,7 @@ public class DealerTest {
     PlayingCard[] cards = new PlayingCard[2];
     cards[0] = new FrenchCard("4", FrenchSuit.SPADES.name());
     cards[1] = new FrenchCard("K", FrenchSuit.SPADES.name());
-    this.dealer = new Dealer("test dealer");
+    this.dealer = new BlackjackDealer("test dealer");
     this.dealer.setDeck(new BlackjackCardDeck());
     this.dealer.getDeck().init();
     this.dealer.init();

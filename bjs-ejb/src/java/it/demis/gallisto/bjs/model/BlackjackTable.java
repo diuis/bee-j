@@ -4,8 +4,8 @@
  */
 package it.demis.gallisto.bjs.model;
 
-import it.demis.gallisto.bjs.model.actors.Dealer;
-import it.demis.gallisto.bjs.model.actors.Player;
+import it.demis.gallisto.bjs.model.actors.BlackjackDealer;
+import it.demis.gallisto.bjs.model.actors.BlackjackPlayer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.ManagedBean;
@@ -22,9 +22,9 @@ public class BlackjackTable {
   private final Logger _log = Logger.getLogger(this.getClass().getName());
 
   @Inject
-  private Player player;
+  private BlackjackPlayer player;
   @Inject
-  private Dealer dealer;
+  private BlackjackDealer dealer;
 
   public BlackjackTable() {
     super();
@@ -35,19 +35,19 @@ public class BlackjackTable {
     this._log.log(Level.INFO, "blackjack table created: the dealer names is {0} and the player name is {1}", new Object[]{this.getDealer().getName(), this.getPlayer().getName()});
   }
 
-  public Dealer getDealer() {
+  public BlackjackDealer getDealer() {
     return dealer;
   }
 
-  public void setDealer(final Dealer _dealer) {
+  public void setDealer(final BlackjackDealer _dealer) {
     this.dealer = _dealer;
   }
 
-  public Player getPlayer() {
+  public BlackjackPlayer getPlayer() {
     return player;
   }
 
-  public void setPlayer(final Player _player) {
+  public void setPlayer(final BlackjackPlayer _player) {
     this.player = _player;
   }
 }
