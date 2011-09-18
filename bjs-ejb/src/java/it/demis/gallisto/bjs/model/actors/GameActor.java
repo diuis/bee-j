@@ -4,6 +4,7 @@
  */
 package it.demis.gallisto.bjs.model.actors;
 
+import it.demis.gallisto.bjs.model.BlackjackHand;
 import it.demis.gallisto.bjs.strategies.GameStrategy;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,6 +31,8 @@ public abstract class GameActor {
     this.name = _name;
   }
 
+  public abstract BlackjackHand getHand();
+  
   public GameStrategy getStrategy() {
     return this.strategy;
   }

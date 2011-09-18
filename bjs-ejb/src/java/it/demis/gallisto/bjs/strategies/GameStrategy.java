@@ -4,7 +4,7 @@
  */
 package it.demis.gallisto.bjs.strategies;
 
-import it.demis.gallisto.bjs.model.Hand;
+import it.demis.gallisto.bjs.model.BlackjackHand;
 import it.demis.gallisto.bjs.model.actors.Memory;
 
 /**
@@ -15,5 +15,5 @@ public interface GameStrategy {
 
   String getName();
 
-  Advice getAdvice(Hand _playerHand, Hand _dealerHand, Memory _playerMemory) throws StrategyException;
+  Advice getAdvice(BlackjackHand _playerHand, BlackjackHand _dealerHand, Memory _playerMemory) throws StrategyException;
 }

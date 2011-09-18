@@ -6,7 +6,7 @@ package it.demis.gallisto.bjs.model.actors;
 
 import it.demis.gallisto.bjs.model.BlackjackCardDeckQualifier;
 import it.demis.gallisto.bjs.model.CardDeck;
-import it.demis.gallisto.bjs.model.Hand;
+import it.demis.gallisto.bjs.model.BlackjackHand;
 import it.demis.gallisto.bjs.model.cards.Facing;
 import it.demis.gallisto.bjs.model.cards.PlayingCard;
 import it.demis.gallisto.bjs.strategies.GameStrategy;
@@ -25,7 +25,7 @@ public class BlackjackDealer extends GameActor {
 
   @Inject @BlackjackCardDeckQualifier
   private CardDeck deck;
-  private Hand hand = new Hand();
+  private BlackjackHand hand = new BlackjackHand();
 
   public BlackjackDealer() {
     this(null);
@@ -54,11 +54,11 @@ public class BlackjackDealer extends GameActor {
     this.deck = _deck;
   }
 
-  public Hand getHand() {
+  public BlackjackHand getHand() {
     return hand;
   }
 
-  public void setHand(final Hand _hand) {
+  protected void setHand(final BlackjackHand _hand) {
     this.hand = _hand;
   }
 

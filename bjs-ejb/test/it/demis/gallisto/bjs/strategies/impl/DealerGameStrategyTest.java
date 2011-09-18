@@ -4,7 +4,7 @@
  */
 package it.demis.gallisto.bjs.strategies.impl;
 
-import it.demis.gallisto.bjs.model.Hand;
+import it.demis.gallisto.bjs.model.BlackjackHand;
 import it.demis.gallisto.bjs.model.cards.Facing;
 import it.demis.gallisto.bjs.model.cards.FrenchCard;
 import it.demis.gallisto.bjs.model.cards.FrenchSuit;
@@ -34,11 +34,11 @@ public class DealerGameStrategyTest {
   @Test
   public void testGetAdvice() throws Exception {
 
-    Hand dHand = null;
+    BlackjackHand dHand = null;
     FrenchCard card = null;
     Advice result = null;
 
-    dHand = new Hand();
+    dHand = new BlackjackHand();
     card = new FrenchCard("2", FrenchSuit.CLUBS.name());
     card.setFacing(Facing.UP);
     dHand.addCard(card);
@@ -51,7 +51,7 @@ public class DealerGameStrategyTest {
     assertEquals(Advice.HIT, result);
 
 
-    dHand = new Hand();
+    dHand = new BlackjackHand();
     card = new FrenchCard("9", FrenchSuit.CLUBS.name());
     card.setFacing(Facing.UP);
     dHand.addCard(card);
@@ -64,7 +64,7 @@ public class DealerGameStrategyTest {
     assertEquals(Advice.STAY, result);
 
     
-    dHand = new Hand();
+    dHand = new BlackjackHand();
     card = new FrenchCard("9", FrenchSuit.CLUBS.name());
     card.setFacing(Facing.UP);
     dHand.addCard(card);
@@ -77,7 +77,7 @@ public class DealerGameStrategyTest {
     assertEquals(Advice.STAY, result);
 
     
-    dHand = new Hand();
+    dHand = new BlackjackHand();
     card = new FrenchCard("2", FrenchSuit.CLUBS.name());
     card.setFacing(Facing.UP);
     dHand.addCard(card);
@@ -94,7 +94,7 @@ public class DealerGameStrategyTest {
     assertEquals(Advice.HIT, result);
 
     
-    dHand = new Hand();
+    dHand = new BlackjackHand();
     card = new FrenchCard("1", FrenchSuit.CLUBS.name());
     card.setFacing(Facing.UP);
     dHand.addCard(card);
@@ -111,7 +111,7 @@ public class DealerGameStrategyTest {
     assertEquals(Advice.HIT, result);
     
     
-    dHand = new Hand();
+    dHand = new BlackjackHand();
     card = new FrenchCard("1", FrenchSuit.CLUBS.name());
     card.setFacing(Facing.UP);
     dHand.addCard(card);

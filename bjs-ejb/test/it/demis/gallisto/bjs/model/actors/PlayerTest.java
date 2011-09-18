@@ -6,7 +6,7 @@ package it.demis.gallisto.bjs.model.actors;
 
 import java.util.List;
 import it.demis.gallisto.bjs.model.cards.FrenchCard;
-import it.demis.gallisto.bjs.model.Hand;
+import it.demis.gallisto.bjs.model.BlackjackHand;
 import it.demis.gallisto.bjs.model.cards.Facing;
 import it.demis.gallisto.bjs.model.cards.FrenchSuit;
 import it.demis.gallisto.bjs.model.cards.PlayingCard;
@@ -53,7 +53,7 @@ public class PlayerTest {
 
   @Test
   public void testGetHand() {
-    Hand hand = this.player.getHand();
+    BlackjackHand hand = this.player.getHand();
     assertNotNull(hand);
 
     List<PlayingCard> cards = hand.getUpCards();

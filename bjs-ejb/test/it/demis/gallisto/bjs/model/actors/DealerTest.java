@@ -5,7 +5,7 @@
 package it.demis.gallisto.bjs.model.actors;
 
 import it.demis.gallisto.bjs.model.BlackjackCardDeck;
-import it.demis.gallisto.bjs.model.Hand;
+import it.demis.gallisto.bjs.model.BlackjackHand;
 import it.demis.gallisto.bjs.model.cards.Facing;
 import it.demis.gallisto.bjs.model.cards.FrenchSuit;
 import it.demis.gallisto.bjs.model.cards.FrenchCard;
@@ -44,7 +44,7 @@ public class DealerTest {
 
   @Test
   public void testGetHand() {
-    Hand hand = this.dealer.getHand();
+    BlackjackHand hand = this.dealer.getHand();
     assertNotNull(hand);
   }
 

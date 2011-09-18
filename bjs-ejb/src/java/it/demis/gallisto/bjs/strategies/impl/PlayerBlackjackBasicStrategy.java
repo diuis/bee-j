@@ -5,7 +5,7 @@
 package it.demis.gallisto.bjs.strategies.impl;
 
 import it.demis.gallisto.bjs.strategies.AbstractGameStrategy;
-import it.demis.gallisto.bjs.model.Hand;
+import it.demis.gallisto.bjs.model.BlackjackHand;
 import it.demis.gallisto.bjs.model.actors.Memory;
 import it.demis.gallisto.bjs.model.cards.BlackJackCardDecorator;
 import it.demis.gallisto.bjs.model.cards.FrenchCard;
@@ -36,7 +36,7 @@ public class PlayerBlackjackBasicStrategy extends AbstractGameStrategy {
   }
 
   @Override
-  public Advice getAdvice(final Hand _playerHand, final Hand _dealerHand, final Memory _playerMemory) throws StrategyException {
+  public Advice getAdvice(final BlackjackHand _playerHand, final BlackjackHand _dealerHand, final Memory _playerMemory) throws StrategyException {
     Advice res = null;
 
     if (this.dataStrategy == null) {
@@ -60,7 +60,7 @@ public class PlayerBlackjackBasicStrategy extends AbstractGameStrategy {
 
       final int totUpCards = _playerHand.totalUpCards();
       if (totUpCards > 0) {
-        final Hand.HandValue handValue = _playerHand.getValueOfUpCards();
+        final BlackjackHand.HandValue handValue = _playerHand.getValueOfUpCards();
 
         if (handValue.isPair()) {
           final Integer idxLookup = handValue.getValue() / 2;

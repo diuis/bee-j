@@ -8,7 +8,7 @@ import it.demis.gallisto.bjs.model.cards.Facing;
 import it.demis.gallisto.bjs.model.cards.FrenchSuit;
 import it.demis.gallisto.bjs.model.cards.FrenchCard;
 import it.demis.gallisto.bjs.strategies.GameStrategy;
-import it.demis.gallisto.bjs.model.Hand;
+import it.demis.gallisto.bjs.model.BlackjackHand;
 import it.demis.gallisto.bjs.strategies.Advice;
 import org.junit.After;
 import org.junit.Before;
@@ -40,19 +40,19 @@ public class PlayerBlackjackBasicStrategyTest {
   @Test
   public void testGetAdvice() throws Exception {
 
-    Hand dHand = null;
-    Hand pHand = null;
+    BlackjackHand dHand = null;
+    BlackjackHand pHand = null;
     FrenchCard card = null;
     Advice result = null;
 
-    dHand = new Hand();
+    dHand = new BlackjackHand();
     card = new FrenchCard("2", FrenchSuit.CLUBS.name());
     card.setFacing(Facing.DOWN);
     dHand.addCard(card);
     card = new FrenchCard("3", FrenchSuit.CLUBS.name());
     card.setFacing(Facing.UP);
     dHand.addCard(card);
-    pHand = new Hand();
+    pHand = new BlackjackHand();
     card = new FrenchCard("3", FrenchSuit.DIAMOND.name());
     card.setFacing(Facing.UP);
     pHand.addCard(card);
@@ -61,14 +61,14 @@ public class PlayerBlackjackBasicStrategyTest {
     assertEquals(Advice.NOT_AVAILABLE, result);
 
 
-    dHand = new Hand();
+    dHand = new BlackjackHand();
     card = new FrenchCard("2", FrenchSuit.CLUBS.name());
     card.setFacing(Facing.DOWN);
     dHand.addCard(card);
     card = new FrenchCard("3", FrenchSuit.CLUBS.name());
     card.setFacing(Facing.UP);
     dHand.addCard(card);
-    pHand = new Hand();
+    pHand = new BlackjackHand();
     card = new FrenchCard("4", FrenchSuit.DIAMOND.name());
     card.setFacing(Facing.UP);
     pHand.addCard(card);
@@ -77,14 +77,14 @@ public class PlayerBlackjackBasicStrategyTest {
     assertEquals(Advice.NOT_AVAILABLE, result);
 
 
-    dHand = new Hand();
+    dHand = new BlackjackHand();
     card = new FrenchCard("2", FrenchSuit.CLUBS.name());
     card.setFacing(Facing.DOWN);
     dHand.addCard(card);
     card = new FrenchCard("3", FrenchSuit.CLUBS.name());
     card.setFacing(Facing.UP);
     dHand.addCard(card);
-    pHand = new Hand();
+    pHand = new BlackjackHand();
     card = new FrenchCard("6", FrenchSuit.DIAMOND.name());
     card.setFacing(Facing.UP);
     pHand.addCard(card);
@@ -93,7 +93,7 @@ public class PlayerBlackjackBasicStrategyTest {
     assertEquals(Advice.HIT, result);
 
 
-    dHand = new Hand();
+    dHand = new BlackjackHand();
     card = new FrenchCard("2", FrenchSuit.CLUBS.name());
     card.setFacing(Facing.DOWN);
     dHand.addCard(card);
@@ -101,7 +101,7 @@ public class PlayerBlackjackBasicStrategyTest {
     card.setFacing(Facing.UP);
     dHand.addCard(card);
     
-    pHand = new Hand();
+    pHand = new BlackjackHand();
     card = new FrenchCard("10", FrenchSuit.DIAMOND.name());
     card.setFacing(Facing.UP);
     pHand.addCard(card);
