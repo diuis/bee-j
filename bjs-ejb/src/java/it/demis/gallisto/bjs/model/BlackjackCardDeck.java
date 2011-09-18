@@ -24,7 +24,7 @@ import javax.inject.Inject;
  * @author Demis Gallisto
  */
 @ManagedBean
-public class CardDeck {
+public class BlackjackCardDeck {
 
   private List<PlayingCard> availabCards = new ArrayList<>(52);
   private List<PlayingCard> removedCards = new ArrayList<>(52);
@@ -33,7 +33,7 @@ public class CardDeck {
   private Event<CardRemovedEvent> events;
   private boolean initialized;
 
-  public CardDeck() {
+  public BlackjackCardDeck() {
     super();
   }
 

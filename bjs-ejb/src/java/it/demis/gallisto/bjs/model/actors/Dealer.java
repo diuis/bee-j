@@ -4,7 +4,7 @@
  */
 package it.demis.gallisto.bjs.model.actors;
 
-import it.demis.gallisto.bjs.model.CardDeck;
+import it.demis.gallisto.bjs.model.BlackjackCardDeck;
 import it.demis.gallisto.bjs.model.Hand;
 import it.demis.gallisto.bjs.model.cards.Facing;
 import it.demis.gallisto.bjs.model.cards.PlayingCard;
@@ -23,7 +23,7 @@ import javax.inject.Inject;
 public class Dealer extends GameActor {
 
   @Inject
-  private CardDeck deck;
+  private BlackjackCardDeck deck;
   private Hand hand = new Hand();
 
   public Dealer() {
@@ -45,11 +45,11 @@ public class Dealer extends GameActor {
     this.getHand().addCard(card2);
   }
 
-  protected CardDeck getDeck() {
+  protected BlackjackCardDeck getDeck() {
     return this.deck;
   }
 
-  protected void setDeck(final CardDeck _deck) {
+  protected void setDeck(final BlackjackCardDeck _deck) {
     this.deck = _deck;
   }
 

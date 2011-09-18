@@ -4,7 +4,7 @@
  */
 package it.demis.gallisto.bjs.model.actors;
 
-import it.demis.gallisto.bjs.model.CardDeck;
+import it.demis.gallisto.bjs.model.BlackjackCardDeck;
 import it.demis.gallisto.bjs.model.Hand;
 import it.demis.gallisto.bjs.model.cards.Facing;
 import it.demis.gallisto.bjs.model.cards.FrenchSuit;
@@ -32,7 +32,7 @@ public class DealerTest {
     cards[0] = new FrenchCard("4", FrenchSuit.SPADES.name());
     cards[1] = new FrenchCard("K", FrenchSuit.SPADES.name());
     this.dealer = new Dealer("test dealer");
-    this.dealer.setDeck(new CardDeck());
+    this.dealer.setDeck(new BlackjackCardDeck());
     this.dealer.getDeck().init();
     this.dealer.init();
   }
