@@ -67,6 +67,10 @@ public class Dealer extends GameActor {
     res[0].setFacing(Facing.UP);
     res[1] = this.getDeck().getCard();
     res[1].setFacing(Facing.UP);
+    if (_log.isLoggable(Level.INFO)) {
+      _log.log(Level.INFO, "tot remaining cards : {0}", this.getDeck().totalAvailableCards());
+      _log.log(Level.INFO, "tot removed cards : {0}", this.getDeck().totalRemovedCards());
+    }
     return res;
   }
 

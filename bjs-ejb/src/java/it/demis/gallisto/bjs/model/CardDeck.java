@@ -87,7 +87,7 @@ public class CardDeck {
         this.init();
       }
       final PlayingCard card = this.availabCards.remove(0);
-      this.removedCards.add(card);// TODO new deck
+      this.removedCards.add(card);
       res = card;
       if (this.events != null) {
         this.events.fire(new CardRemovedEvent(res));

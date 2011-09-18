@@ -42,7 +42,12 @@ public class FrenchCard extends AbstractCard implements PlayingCard {
           throw new IllegalArgumentException("broken preconditions: value is not a valid number (1..10) or J|Q|K", _e);
         }
     }
-    this.setSuit(_suit);
+    final FrenchSuit fs = FrenchSuit.valueOf(_suit);
+    if (fs != null) {
+      this.setSuit(_suit);
+    } else {
+      throw new IllegalArgumentException("broken preconditions: suit is not a valid french suit");
+    }
   }
 
   @Override

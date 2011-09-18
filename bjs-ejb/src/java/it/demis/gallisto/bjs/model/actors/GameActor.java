@@ -5,6 +5,7 @@
 package it.demis.gallisto.bjs.model.actors;
 
 import it.demis.gallisto.bjs.strategies.GameStrategy;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -26,7 +27,6 @@ public abstract class GameActor {
   }
 
   public void setName(final String _name) {
-
     this.name = _name;
   }
 
@@ -36,6 +36,9 @@ public abstract class GameActor {
 
   public void setStrategy(final GameStrategy _strategy) {
     this.strategy = _strategy;
+    if (_log.isLoggable(Level.FINE)) {
+      _log.log(Level.FINE, "strategy injected {0}", _strategy);
+    }
   }
 
   @Override

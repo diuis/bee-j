@@ -26,6 +26,7 @@ public class Hand {
       super();
     }
 
+    @Override
     public String toString() {
       return "HandValue{" + "value=" + value + ", soft=" + soft + ", pair=" + pair + '}';
     }

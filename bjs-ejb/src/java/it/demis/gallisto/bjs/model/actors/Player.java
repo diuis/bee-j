@@ -45,6 +45,9 @@ public class Player extends GameActor {
       }
       this.getHand().addCard(itm);
     }
+    if (_log.isLoggable(Level.INFO)) {
+      _log.log(Level.INFO, "hand initialized [number of cards= {0}]", _card.length);
+    }
   }
 
   @PostConstruct

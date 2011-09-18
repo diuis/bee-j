@@ -21,13 +21,17 @@ public class Memory {
   private Logger _log = Logger.getLogger(this.getClass().getName());
   private List<PlayingCard> cards = new ArrayList<>();
 
+  public List<PlayingCard> getCards() {
+    return this.cards;
+  }
+
   public void addRemovedCard(final @Observes CardRemovedEvent _evt) {
     if (_evt != null) {
       if (_evt.getRemovedCard() != null) {
         this.cards.add(_evt.getRemovedCard());
       }
       if (_log.isLoggable(Level.INFO)) {
-        _log.info("card removed: " + _evt);
+        _log.log(Level.INFO, "card removed: {0}", _evt);
       }
     }
   }

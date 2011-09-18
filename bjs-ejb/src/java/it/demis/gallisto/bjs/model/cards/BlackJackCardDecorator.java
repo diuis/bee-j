@@ -40,28 +40,33 @@ public class BlackJackCardDecorator implements PlayingCardDecorator {
     return this.card.getSuit();
   }
 
+  /**
+   * This method is NOT thread-safe
+   */
   @Override
   public int getCalculatedValue() {
     int res = 0;
-    try {
-      res = Integer.parseInt(this.getValue());
-    } catch (final NullPointerException | NumberFormatException _e) {
-      if (this.getValue() != null) {
-        switch (this.getValue()) {
-          case "J":
-            res = 10;
-            break;
-          case "Q":
-            res = 10;
-            break;
-          case "K":
-            res = 10;
-            break;
-          default:
-            throw new IllegalStateException("card value not supported: " + this.getValue());
+    if (this.getFacing().equals(Facing.UP)) {
+      try {
+        res = Integer.parseInt(this.getValue());
+      } catch (final NullPointerException | NumberFormatException _e) {
+        if (this.getValue() != null) {
+          switch (this.getValue()) {
+            case "J":
+              res = 10;
+              break;
+            case "Q":
+              res = 10;
+              break;
+            case "K":
+              res = 10;
+              break;
+            default:
+              throw new IllegalStateException("card value not supported: " + this.getValue());
+          }
+        } else {
+          throw new IllegalStateException("not expected null card value", _e);
         }
-      } else {
-        throw new IllegalStateException("not expected null card value", _e);
       }
     }
     return res;

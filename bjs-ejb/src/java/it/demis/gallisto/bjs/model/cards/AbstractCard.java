@@ -22,6 +22,9 @@ public abstract class AbstractCard implements PlayingCard {
     return this.facing;
   }
 
+  /**
+   * This method is NOT thread-safe
+   */
   @Override
   public String getSuit() {
     String res = null;
@@ -33,6 +36,9 @@ public abstract class AbstractCard implements PlayingCard {
     return res;
   }
 
+  /**
+   * This method is NOT thread-safe
+   */
   @Override
   public String getValue() {
     String res = null;
@@ -44,6 +50,9 @@ public abstract class AbstractCard implements PlayingCard {
     return res;
   }
 
+  /**
+   * This method is NOT thread-safe
+   */
   @Override
   public void setFacing(final Facing _facing) {
     this.facing = _facing;
